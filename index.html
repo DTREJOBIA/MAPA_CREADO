@@ -4,14 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CATALAGO BIA HONDURAS</title>
+    <h1 class="title-3d">CATÁLOGO BIA HONDURAS</h1>
+    
     <style>
+        
+
+        .title-3d {
+            
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: left;
+    color: #333; /* Color oscuro pero elegante */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    margin: 50px auto;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3),
+                 4px 4px 0px rgba(0, 0, 0, 0.2),
+                 6px 6px 0px rgba(0, 0, 0, 0.1);
+    transition: text-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Efecto de movimiento al pasar el mouse */
+.title-3d:hover {
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3),
+                 8px 8px 0px rgba(0, 0, 0, 0.2),
+                 12px 12px 0px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+
+
+
+
         /* Reset de estilo básico */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
- body {
+
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f7fc;
             color: #333;
@@ -27,19 +61,22 @@
         }
 
         .container {
-            width: 90%;
-            max-width: 1200px;
+            width: center;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 20px;
             flex: 1;
         }
-.category-list, .line-list, .product-list {
+
+        .category-list, .line-list, .product-list {
             display: none;
         }
-  .active {
+
+        .active {
             display: block;
         }
-.category, .line, .product {
+
+        .category, .line, .product {
             display: inline-block;
             margin: 20px;
             width: 250px;
@@ -50,22 +87,26 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
-.category:hover, .line:hover, .product:hover {
+
+        .category:hover, .line:hover, .product:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-.category img, .line img, .product img {
+
+        .category img, .line img, .product img {
             width: 100%;
             border-radius: 10px;
             height: 200px;
             object-fit: cover;
         }
-.category p, .line p, .product p {
+
+        .category p, .line p, .product p {
             margin-top: 10px;
             font-size: 16px;
             font-weight: 500;
         }
-.button {
+
+        .button {
             display: inline-block;
             padding: 10px 20px;
             background-color: #28a745;
@@ -75,27 +116,42 @@
             margin-top: 20px;
             transition: background-color 0.3s ease;
         }
- .button:hover {
+
+        .button:hover {
             background-color: #218838;
         }
-footer {
+
+        footer {
             background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            position: relative;
-            width: 100%;
-            bottom: 0;
-            margin-top: auto;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
         }
- footer a {
+
+        footer a {
             color: #28a745;
             text-decoration: none;
         }
- footer a:hover {
+        .footer-container {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    max-width: 1200px;
+}
+.footer-logo {
+    width: 80px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+    margin-right: 20px;
+}
+        footer a:hover {
             text-decoration: underline;
         }
- /* Imagen de fondo transparente */
+
+        /* Imagen de fondo transparente */
         .background-image {
             background: url('https://www.laprensa.hn/binrepository/1200x900/0c0/0d0/none/11004/QHLW/proceso1_6358129_20231227140757.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -107,16 +163,17 @@ footer {
             height: 100%;
             z-index: -1;
         }
- /* Botón Volver siempre centrado */
+
+        /* Botón Volver siempre centrado */
         .center-button {
             position: fixed;
             left: 50%;
-            bottom: 20px;
+            bottom: 125px;
             transform: translateX(-50%);
             font-size: 18px;
             background-color: #007bff;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border-radius: 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s;
@@ -125,11 +182,13 @@ footer {
         .center-button:hover {
             background-color: #0056b3;
         }
- /* Animación de desvanecimiento */
+
+        /* Animación de desvanecimiento */
         .fade-in {
             animation: fadeIn 1s ease-in-out;
         }
- @keyframes fadeIn {
+
+        @keyframes fadeIn {
             from {
                 opacity: 0;
             }
@@ -137,7 +196,8 @@ footer {
                 opacity: 1;
             }
         }
- /* Efecto para el scroll */
+
+        /* Efecto para el scroll */
         .scroll-down {
             position: absolute;
             bottom: 20px;
@@ -163,11 +223,12 @@ footer {
     </style>
 </head>
 <body>
+    
   <!-- Imagen de fondo transparente -->
     <div class="background-image"></div>
   <!-- Página Principal -->
     <div id="main-page" class="container category-list active fade-in">
-        <h1>CATALAGO BIA HONDURAS</h1>
+        
         <p class="intro-text">Selecciona una marca para ver los productos disponibles.</p>
         <div class="category">
             <a href="javascript:void(0)" onclick="showPage('cafe-maya')">
@@ -211,15 +272,26 @@ footer {
                 <p><strong>MOLSA</strong></p>
             </a>
         </div>
-   <footer>
+
+        <!-- <footer>
             <p>© 2025 BIA HONDURAS. Todos los derechos reservados.</p>
             <p>
                 <a href="#">Política de Privacidad</a> |
                 <a href="#">Términos y Condiciones</a>
             </p>
-        </footer>
+        </footer>--->
         <div class="scroll-down">↓</div>
     </div>
+    <style>
+    .intro-text {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 20px;
+        color: #333;
+    }
+</style>
+    
             <!---------------------------------------------------------------------------->
     <!-- Página de Café Maya -->
     <style>
@@ -275,31 +347,31 @@ footer {
         <h2>Líneas de Café Maya</h2>
         <div class="line">
             <a href="javascript:void(0)" onclick="showPage('torrefacto maya')">
-                <img src="https://walmarthn.vtexassets.com/arquivos/ids/385992-800-450?v=638458762308370000&width=800&height=450&aspect=true" alt="Torrefacto">
+                <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/487882337_122095977200831729_8117397261913362323_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YkXrAMTPjZkQ7kNvgEzhdd9&_nc_oc=Adk9dvIJ3ls9ddzduUiRi8DkIXVEttxcuRhXA3C5uHQ0098xW7IsafSyAnnrYSpiWWM&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=EdA2Vhh3fdeb7fM9kMOHag&oh=00_AYEJmHaKV2tATjMmOE3in0Fz0sdieiguGTn6Qf7nfN3SjA&oe=67F1FCAC" alt="Torrefacto">
                 <p><strong>Torrefacto</strong></p>
             </a>
         </div>
         <div class="line">
             <a href="javascript:void(0)" onclick="showPage('Selecto maya')">
-                <img src="https://walmarthn.vtexassets.com/arquivos/ids/172064-800-450?v=637666371760930000&width=800&height=450&aspect=true" alt="Puro">
+                <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/487487344_122095980068831729_8339042629044857280_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8Co2nXe5-WgQ7kNvgF7pw6O&_nc_oc=AdluEF7NFvubj-gA9ZxIouDyGtZgXEo4Ugb_CSfE4KEv9iuz0K5fdm0JLf7L0iNZMw8&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=7-kR2vjXBttt-hFuJa4vfA&oh=00_AYH2TczIv-LUsXNJURNec2csqXwrR33s_mOZq5LhqfRh0g&oe=67F1E84D" alt="Puro">
                 <p><strong>Café Maya Selecto</strong></p>
             </a>
         </div>
         <div class="line">
             <a href="javascript:void(0)" onclick="showPage('Puro maya')">
-                <img src="https://d9zuehkdkxba0.cloudfront.net/wp-content/uploads/2020/09/cafe-maya-cremora-6.jpg" alt="Productos">
+                <img src="https://scontent.ftgu3-3.fna.fbcdn.net/v/t39.30808-6/487473560_122095986788831729_6095366631746061527_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=bXxhor2-47oQ7kNvgGV1SXt&_nc_oc=AdmcxlH-F1gzZKZWS7oIlmh55rEnZ5k2__zdWtSmhO_ukcKn-uAbYnbtSn0BkwOnqiI&_nc_zt=23&_nc_ht=scontent.ftgu3-3.fna&_nc_gid=14bCi3gALYNGwqJNxvlTOA&oh=00_AYE8BWVdAHl45hT4jwjwacEPVBgYNTUOeaZJsOsQ6lchYw&oe=67F1F685" alt="Productos">
                 <p><strong>Puro</strong></p>
             </a>
         </div>
         <div class="line">
             <a href="javascript:void(0)" onclick="showPage('Coffee Club maya')">
-                <img src="https://walmarthn.vtexassets.com/arquivos/ids/172064-800-450?v=637666371760930000&width=800&height=450&aspect=true" alt="Puro">
+                <img src="https://scontent.ftgu3-3.fna.fbcdn.net/v/t39.30808-6/487480305_122095981616831729_3825862466613724182_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=4IrzIIVltuwQ7kNvgHniX-p&_nc_oc=AdlHdBR_TMHPqNVdg4Y8YMnBcwK_UzvSKc8zepEv0CzNpE5LJCxpVPsnG93arevoo9g&_nc_zt=23&_nc_ht=scontent.ftgu3-3.fna&_nc_gid=mBYkHWFgnDBKFs8S1j7A4Q&oh=00_AYFGA_E1Nw-TSTnpxjGHWw-oT8GxCJz9OVmQq_XIRI3QUA&oe=67F20017" alt="Puro">
                 <p><strong>Coffee Club</strong></p>
             </a>
         </div>
         <div class="line">
             <a href="javascript:void(0)" onclick="showPage('Soluble maya')">
-                <img src="https://d9zuehkdkxba0.cloudfront.net/wp-content/uploads/2020/09/cafe-maya-cremora-6.jpg" alt="Productos">
+                <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/488073720_122095987322831729_679977686004568805_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=zDYRdGIMnT8Q7kNvgHr2Wd3&_nc_oc=AdlGEE85uKIfWBeLAaH9EqXfMyfwMycaZoITfIJ4r08Mu0vn9b6Rk-qpZcEm694M93c&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=IC1zox3sFcl7Gg0ED7FSbg&oh=00_AYHNhQ1nWWvmPKTO9QZAQ9xyOzC_e9MemYkweYJOk8ZRQg&oe=67F1EBC8" alt="Productos">
                 <p><strong>Soluble</strong></p>
             </a>
         </div>
@@ -316,35 +388,35 @@ footer {
     <div id="torrefacto maya" class="container product-list fade-in">
         <h2>Productos de Torrefacto</h2>
         <div class="product">
-            <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/486695517_122093337644831729_6558069951632562286_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=G4u2IinlaDMQ7kNvgGthbGS&_nc_oc=AdkDFUwwxEbHu_uf9XGbXtoU3rZH9ip1YpauZPo6RgllOpZhF9_D5qiWysOTZ2peSNE&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=MYvGfGRWQRCI2SzC_z3BcA&oh=00_AYHUsiLNxFXjawMSNe2V0QYnsHs_fVRjUCg7koYHBDVdVQ&oe=67EB57EE" alt="Café Maya 432g"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-3.fna.fbcdn.net/v/t39.30808-6/487515385_122095976996831729_2919613948756211854_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7gYgThStJCQQ7kNvgGf9GWR&_nc_oc=AdncQ0fG9DGd_S3tq24SB10oUrVBMJ2XX_o2XzBlA6W3-xgM-iik2t_pU031rYptfYw&_nc_zt=23&_nc_ht=scontent.ftgu3-3.fna&_nc_gid=zaIjyHHifopHIggIBSkHdw&oh=00_AYGtE3H3AIygNg0kEOq-vmhB3ktmpWKcfSbXYQCRMAjRxw&oe=67F1FD27" alt="Café Maya 432g"onclick="toggleImageSize(this)">
             <p><strong>Cafe Maya </strong><br> 390 g <br> Código: 100018 <br> Precio:  L. 107</p>
         </div>
         <div class="product">
-            <img src="https://walmarthn.vtexassets.com/arquivos/ids/176653-800-450?v=637674357752530000&width=800&height=450&aspect=true" alt="Café Maya 378g"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/487417047_122095978832831729_1850608538120972598_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Iu9tmkjD-4oQ7kNvgGU8bsb&_nc_oc=AdlSyGmVpVIf-fntUpduVMOr0_gQgiNtfbY8FY-vX_3inP3r8LkcXnzTrIJ4xAeTXNo&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=iRXRCystj9-ktPwvfcrIbA&oh=00_AYHG3-8b3EyE-Re9I789yT_-LbjH21ZKWbS4_EZUpHK4ZQ&oe=67F1E366" alt="Café Maya 378g"onclick="toggleImageSize(this)">
             <p><strong>Café Campeño</strong><br>1x15 390 g <br> Código: 110006<br> Precio: L.99</p>
         </div>
         <div class="product">
-            <img src="https://walmarthn.vtexassets.com/arquivos/ids/176653-800-450?v=637674357752530000&width=800&height=450&aspect=true" alt="Café Maya 216g"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-3.fna.fbcdn.net/v/t39.30808-6/487507176_122095977686831729_3418949365429327005_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_f-wQBY2Zg4Q7kNvgFotwUv&_nc_oc=Adnh9eEBHQ7g10ziKHNDTiPnyhDoGSfhdhy0-5ETG_3qaF6BF1SSE-aGZTmd6xVsSD0&_nc_zt=23&_nc_ht=scontent.ftgu3-3.fna&_nc_gid=qJa6mI82rcmuq23gqSyu4Q&oh=00_AYHqb_nz7_O44YGoK-TLHnZjZDqZ3k_8zbJ58-jzWwpm2g&oe=67F20502" alt="Café Maya 216g"onclick="toggleImageSize(this)">
             <p><strong>Café Medalla </strong><br>1x15 390 g <br> Código: 120006 <br> Precio:  L. 107</p>
         </div>
         <div class="product">
-            <img src="https://walmarthn.vtexassets.com/arquivos/ids/176653-800-450?v=637674357752530000&width=800&height=450&aspect=true" alt="Café Maya 6oz"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/487484821_122095978244831729_309886848649705810_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=WTsE1dhrhf4Q7kNvgHeO4Fr&_nc_oc=AdmXuhOYQ1gCvdTP1sBLES8uflUhP4u2rUAYflgKBUsnrvbasxxF5VBbi32g709g4vM&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=4Rd95NYlrpLz0Gz6NYb7HA&oh=00_AYG27FdKparSI4GQdOoBZXB-ZTAdtfQ0kVJ1UgctcHTM8g&oe=67F1FCD1" alt="Café Maya 6oz"onclick="toggleImageSize(this)">
             <p><strong>Café Casinos </strong><br> 375 g 1x15  <br> Código:  150003 <br> Precio:  L. 85</p>
         </div>
         <div class="product">
-            <img src="https://walmarthn.vtexassets.com/arquivos/ids/385992-800-450?v=638458762308370000&width=800&height=450&aspect=true" alt="Café Maya Selecto 378g"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/488231822_122095977962831729_4928505488781924811_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=a1DvmXJJaUQQ7kNvgEDaJNj&_nc_oc=AdnJZRQx1QBG0S0TlKILHLEfwYTfMlHOgA-gvjol9P1EBICklWyfKn3bwIeWE4WuU-M&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=8rRjeMfQT2yQubl-jWx62A&oh=00_AYGeW1dLGM1SjTYOLrQ3z1SYe3JEUeQwP1L8IdXmb-ZfVg&oe=67F1DBCE" alt="Café Maya Selecto 378g"onclick="toggleImageSize(this)">
             <p><strong>Café Casinos </strong><br> 350 g  1x14 <br> Código:  150001 <br> Precio:  L. 51</p>
         </div>
         <div class="product">
-            <img src="https://walmarthn.vtexassets.com/arquivos/ids/385992-800-450?v=638458762308370000&width=800&height=450&aspect=true" alt="Café Maya Selecto 6oz"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-3.fna.fbcdn.net/v/t39.30808-6/487488332_122095977416831729_3000545555193226431_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=-umruoKQRJ4Q7kNvgFDYJAH&_nc_oc=Adm7q7Vb837mgCDR2DMYm8EvOvlTGMk7zg63D_riyiOAjrxNpqZgdDkxqvBJCmSA3vw&_nc_zt=23&_nc_ht=scontent.ftgu3-3.fna&_nc_gid=tHuSbrwj-CBgdFcw90EBmg&oh=00_AYGQ7kXPS1Vi4Q7R838kvP7SE8vmFkAe5W4B_jgZGBm55A&oe=67F207C3" alt="Café Maya Selecto 6oz"onclick="toggleImageSize(this)">
             <p><strong>Café Medalla</strong><br> 1x8 208 g <br> Código: 120012 <br> Precio:  L. 58</p>
         </div>
         <div class="product">
-            <img src="https://tiendaenlinea.supermercadoelexito.hn/web/image/product.template/15634/image_1024?unique=b12f3fc" alt="Café Medalla 432g"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/487882337_122095977200831729_8117397261913362323_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YkXrAMTPjZkQ7kNvgEzhdd9&_nc_oc=Adk9dvIJ3ls9ddzduUiRi8DkIXVEttxcuRhXA3C5uHQ0098xW7IsafSyAnnrYSpiWWM&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=EdA2Vhh3fdeb7fM9kMOHag&oh=00_AYEJmHaKV2tATjMmOE3in0Fz0sdieiguGTn6Qf7nfN3SjA&oe=67F1FCAC" alt="Café Medalla 432g"onclick="toggleImageSize(this)">
             <p><strong>Café Maya</strong><br>  208g <br>Código: 100013<br> Precio:  L. 58</p>
         </div>
         <div class="product">
-            <img src="https://tiendaenlinea.supermercadoelexito.hn/web/image/product.template/15634/image_1024?unique=b12f3fc" alt="Café Medalla 378g"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/487421232_122095979390831729_1362809926684011141_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=IcU3p4TNLUYQ7kNvgHaHWO7&_nc_oc=Adk4-Jeah7dVj3niOsaoK6tcFXjAYTWn9vci3HNMY7Jm7odW4FDRkHCA5N1uJllNYjQ&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=IKOdx3iY1qz_5oe7-dC8_Q&oh=00_AYHw6Sg5iGL-NcqPJr9HGC0Sg59e2jDjDk74S70hcSlSxA&oe=67F20C19" alt="Café Medalla 378g"onclick="toggleImageSize(this)">
             <p><strong>Café Maya</strong><br> 6oz <br> Código: 100020 <br> Precio: L. 21.67</p>
         </div>
        <span class="center-button" onclick="showPage('cafe-maya')">⬅ Volver</span>
@@ -353,11 +425,11 @@ footer {
     <div id="Selecto maya" class="container product-list fade-in">
         <h2>Productos Café Maya Selecto</h2>
         <div class="product">
-            <img src="https://walmarthn.vtexassets.com/arquivos/ids/172064-800-450?v=637666371760930000&width=800&height=450&aspect=true" alt="Café Puro Maya 340g"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-3.fna.fbcdn.net/v/t39.30808-6/487490170_122095979600831729_4922466821201035358_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=d9W8VO5TdJIQ7kNvgEShmYL&_nc_oc=AdmZdCBnR16fySPhvqIuAWBVKLDarXv9jq_rltBFtpFWeRc5XBMIztzJI49lArThLi4&_nc_zt=23&_nc_ht=scontent.ftgu3-3.fna&_nc_gid=4UzPQ0Qv7Nttyltt4-957g&oh=00_AYE9VVnmjq-3GakAQXyq5GVv2kMsvOqdcJVoLHldOQz2GQ&oe=67F1EF0F" alt="Café Puro Maya 340g"onclick="toggleImageSize(this)">
             <p><strong>Café Maya de Palo</strong><br> 444 g <br> Código: 100077<br> Precio:  L. 97</p>
         </div>
         <div class="product">
-            <img src="https://walmarthn.vtexassets.com/arquivos/ids/172064-800-450?v=637666371760930000&width=800&height=450&aspect=true" alt="Coffe Club Molido 340g"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/487487344_122095980068831729_8339042629044857280_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8Co2nXe5-WgQ7kNvgF7pw6O&_nc_oc=AdluEF7NFvubj-gA9ZxIouDyGtZgXEo4Ugb_CSfE4KEv9iuz0K5fdm0JLf7L0iNZMw8&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=7-kR2vjXBttt-hFuJa4vfA&oh=00_AYH2TczIv-LUsXNJURNec2csqXwrR33s_mOZq5LhqfRh0g&oe=67F1E84D" alt="Coffe Club Molido 340g"onclick="toggleImageSize(this)">
             <p><strong>Café Maya Selecto</strong><br> 1x16 324 g <br> Código: 100080<br> Precio:  L. 113</p>
         </div>
        <span class="center-button" onclick="showPage('cafe-maya')">⬅ Volver</span>
@@ -366,7 +438,7 @@ footer {
     <div id="Puro maya" class="container product-list fade-in">
         <h2>Productos de Café puro maya</h2>
         <div class="product">
-            <img src="https://www.lamonjaras.com/admin/storage/products/cafe-maya-instantaneo-16-scaled.jpg" alt="Café Instantáneo"onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-3.fna.fbcdn.net/v/t39.30808-6/487473560_122095986788831729_6095366631746061527_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=bXxhor2-47oQ7kNvgGV1SXt&_nc_oc=AdmcxlH-F1gzZKZWS7oIlmh55rEnZ5k2__zdWtSmhO_ukcKn-uAbYnbtSn0BkwOnqiI&_nc_zt=23&_nc_ht=scontent.ftgu3-3.fna&_nc_gid=14bCi3gALYNGwqJNxvlTOA&oh=00_AYE8BWVdAHl45hT4jwjwacEPVBgYNTUOeaZJsOsQ6lchYw&oe=67F1F685" alt="Café Instantáneo"onclick="toggleImageSize(this)">
             <p><strong>Café Maya Puro Molido</strong><br> 340 g  <br> Código: 100064<br> Precio:  L. 102</p>
         </div>
        <span class="center-button" onclick="showPage('cafe-maya')">⬅ Volver</span>
@@ -386,11 +458,11 @@ footer {
       <div id="Coffee Club maya" class="container product-list fade-in">
         <h2>Productos Café Coffee Club</h2>
         <div class="product">
-            <img src="https://lacolonia.vtexassets.com/arquivos/ids/223805-800-800?v=637352996744230000&width=800&height=800&aspect=true" alt="Café Puro Maya 340g" onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-3.fna.fbcdn.net/v/t39.30808-6/487446839_122095982270831729_397206323961443539_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=mCvNRFq6OO8Q7kNvgFFRtR6&_nc_oc=Adk9mqzKBkiWPtfsScWnIRX_oFve0wN37AnKXErvy_uqOLdStUa7XgW2-dxgXOqncBw&_nc_zt=23&_nc_ht=scontent.ftgu3-3.fna&_nc_gid=U6GUakC2YDC6RVq8iLsrSA&oh=00_AYHtg6Eik50FGFQMJKuMBVmm4Jz42BZ-pCX21GwIwKLOMg&oe=67F207A1" alt="Café Puro Maya 340g" onclick="toggleImageSize(this)">
             <p><strong>Café Maya Coffee Club Puro Molido</strong> <br> 340 g <br> Código: 100031<br> Precio:  L. 104</p>
         </div>
         <div class="product">
-            <img src="https://lacolonia.vtexassets.com/arquivos/ids/223805-800-800?v=637352996744230000&width=800&height=800&aspect=true" alt="Coffe Club Molido 340g" onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-3.fna.fbcdn.net/v/t39.30808-6/487480305_122095981616831729_3825862466613724182_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=4IrzIIVltuwQ7kNvgHniX-p&_nc_oc=AdlHdBR_TMHPqNVdg4Y8YMnBcwK_UzvSKc8zepEv0CzNpE5LJCxpVPsnG93arevoo9g&_nc_zt=23&_nc_ht=scontent.ftgu3-3.fna&_nc_gid=mBYkHWFgnDBKFs8S1j7A4Q&oh=00_AYFGA_E1Nw-TSTnpxjGHWw-oT8GxCJz9OVmQq_XIRI3QUA&oe=67F20017" alt="Coffe Club Molido 340g" onclick="toggleImageSize(this)">
             <p><strong>Café Maya Coffee Club Puro Grano </strong><br>340 g<br> Código: 100032<br>Precio:  L. 104</p>
         </div>
         <span class="center-button" onclick="showPage('cafe-maya')">⬅ Volver</span>
@@ -399,11 +471,11 @@ footer {
      <div id="Soluble maya" class="container product-list fade-in">
         <h2>Productos Café Soluble</h2>
         <div class="product">
-            <img src="https://lacolonia.vtexassets.com/arquivos/ids/223805-800-800?v=637352996744230000&width=800&height=800&aspect=true" alt="Café Puro Maya 340g" onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/488073720_122095987322831729_679977686004568805_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=zDYRdGIMnT8Q7kNvgHr2Wd3&_nc_oc=AdlGEE85uKIfWBeLAaH9EqXfMyfwMycaZoITfIJ4r08Mu0vn9b6Rk-qpZcEm694M93c&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=IC1zox3sFcl7Gg0ED7FSbg&oh=00_AYHNhQ1nWWvmPKTO9QZAQ9xyOzC_e9MemYkweYJOk8ZRQg&oe=67F1EBC8" alt="Café Puro Maya 340g" onclick="toggleImageSize(this)">
             <p><strong>Café Maya Soluble</strong> <br> Ristra 96 g 1x4x12 <br> Código: 100089<br> Precio:  L. 80</p>
         </div>
         <div class="product">
-            <img src="https://lacolonia.vtexassets.com/arquivos/ids/223805-800-800?v=637352996744230000&width=800&height=800&aspect=true" alt="Coffe Club Molido 340g" onclick="toggleImageSize(this)">
+            <img src="https://scontent.ftgu3-4.fna.fbcdn.net/v/t39.30808-6/488073720_122095987322831729_679977686004568805_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=zDYRdGIMnT8Q7kNvgHr2Wd3&_nc_oc=AdlGEE85uKIfWBeLAaH9EqXfMyfwMycaZoITfIJ4r08Mu0vn9b6Rk-qpZcEm694M93c&_nc_zt=23&_nc_ht=scontent.ftgu3-4.fna&_nc_gid=IC1zox3sFcl7Gg0ED7FSbg&oh=00_AYHNhQ1nWWvmPKTO9QZAQ9xyOzC_e9MemYkweYJOk8ZRQg&oe=67F1EBC8" alt="Coffe Club Molido 340g" onclick="toggleImageSize(this)">
             <p><strong>Café Maya Soluble </strong><br>Ristra 120 g 1x4x12<br> Código: 100090<br>Precio:  L. 80</p>
         </div>
         <span class="center-button" onclick="showPage('cafe-maya')">⬅ Volver</span>
@@ -1412,7 +1484,16 @@ footer {
     <p><strong>SAN ANDRES Rosquillas de coco</strong><br>Código:420009<br> Precio: L. 21</p>
     </div>
   <span class="center-button" onclick="showPage('Molsa')">⬅ Volver</span>
-</div>     
+</div>   
+
+<footer>
+    <div class="footer-container">
+        <img src="https://media.licdn.com/dms/image/v2/D560BAQERFonpKzESVQ/company-logo_200_200/company-logo_200_200/0/1730229120486?e=2147483647&v=beta&t=wsQhnCRZSKTvlVbyCz1R24h2tqcdQmtOckbOHCT4aZA" alt="Logo" class="footer-logo">
+        <p>&copy; 2025 BIA HONDURAS. Todos los derechos reservados. </p>
+        <p><a href="#">Política de Privacidad</a> |
+            <a href="#">Términos y Condiciones</a>
+        </p>
+    </div>
+</footer>  
 </body>
 </html>
- <!---------------------------------------------------------------------------->
