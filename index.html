@@ -12,48 +12,46 @@
         navigator.geolocation.getCurrentPosition(function(position) {
           const latLon = position.coords.latitude + "," + position.coords.longitude;
           document.getElementById("latitud").value = latLon;
-        }, function(error) {
-          alert("❌ No se pudieron obtener las coordenadas. Permite el acceso a la ubicación.");
+        }, function() {
+          alert("No se pudieron obtener las coordenadas.");
         });
       } else {
-        alert("⚠️ Tu navegador no soporta geolocalización.");
+        alert("La geolocalización no es compatible con este navegador.");
       }
     }
 
     function enviarFormulario() {
-      const nombre = document.getElementById("nombre").value.trim();
-      const codigo = document.getElementById("codigo").value.trim();
-      const latLon = document.getElementById("latitud").value.trim();
+      const nombre = document.getElementById("nombre").value;
+      const codigo = document.getElementById("codigo").value;
+      const latLon = document.getElementById("latitud").value;
 
       if (!nombre || !codigo || !latLon) {
-        alert("⚠️ Por favor completa todos los campos y obtén las coordenadas.");
+        alert("Por favor completa todos los campos y obtén las coordenadas.");
         return;
       }
 
-      const [latitud, longitud] = latLon.split(",");
-
+      // ✅ Enviar datos a Google Sheets (modo sin CORS)
       fetch('https://script.google.com/macros/s/AKfycbzTeY0pmn6tmgkZ4DHrhZveRplKm1J1b-4jY8O2vqX_Ktm8kdOtZrXj2r4y6JsdTfZQDQ/exec', {
         method: 'POST',
+        mode: 'no-cors', // 👈 Aquí está la clave
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           nombre: nombre,
           codigo: codigo,
-          latitud: latitud,
-          longitud: longitud
+          latitud: latLon.split(",")[0],
+          longitud: latLon.split(",")[1]
         })
       })
-      .then(response => response.text())
-      .then(result => {
-        alert("✅ Datos enviados correctamente a Google Sheets.");
+      .then(() => {
+        alert("✅ Datos enviados (no se puede confirmar respuesta por no-cors).");
         document.getElementById("nombre").value = "";
         document.getElementById("codigo").value = "";
         document.getElementById("latitud").value = "";
       })
       .catch(error => {
-        console.error("Error:", error);
-        alert("❌ Error al enviar los datos: " + error.message);
+        alert("❌ Error al enviar los datos: " + error);
       });
     }
 
@@ -63,7 +61,7 @@
         navigator.clipboard.writeText(coordenadas).then(() => {
           alert("📋 ¡Coordenadas copiadas al portapapeles!");
         }).catch((err) => {
-          alert("❌ Error al copiar: " + err);
+          alert("❌ Error al copiar las coordenadas: " + err);
         });
       } else {
         alert("⚠️ No hay coordenadas para copiar.");
