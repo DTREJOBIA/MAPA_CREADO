@@ -1,99 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario con Coordenadas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-    <script>
-        // Inicialización de Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyAYZmY3bf-uA7KpYH6Z5dvb_5JbF1ArRVk",
-            authDomain: "formulario-ccd64.firebaseapp.com",
-            projectId: "formulario-ccd64",
-            storageBucket: "formulario-ccd64.firebasestorage.app",
-            messagingSenderId: "881091550647",
-            appId: "1:881091550647:web:7487b2b3b8ea58e9cedc32",
-            measurementId: "G-R4V2R9HCKD"
-        };
-        
-        // Inicializamos Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore(app);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario con Coordenadas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        // Función para obtener las coordenadas
-        function obtenerCoordenadas() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    // Juntar latitud y longitud separados por una coma
-                    const latLon = position.coords.latitude + "," + position.coords.longitude;
-                    
-                    // Se actualizan los campos de latitud y longitud con las coordenadas obtenidas
-                    document.getElementById("latitud").value = latLon;
-                }, function() {
-                    alert("No se pudieron obtener las coordenadas.");
-                });
-            } else {
-                alert("La geolocalización no es compatible con este navegador.");
-            }
-        }
+  <script>
+    function obtenerCoordenadas() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const latLon = position.coords.latitude + "," + position.coords.longitude;
+          document.getElementById("latitud").value = latLon;
+        }, function(error) {
+          alert("❌ No se pudieron obtener las coordenadas. Permite el acceso a la ubicación.");
+        });
+      } else {
+        alert("⚠️ Tu navegador no soporta geolocalización.");
+      }
+    }
 
-        // Función para enviar el formulario y guardar los datos en Firestore
-        function enviarFormulario() {
-            const nombre = document.getElementById("nombre").value;
-            const codigo = document.getElementById("codigo").value;
-            const latLon = document.getElementById("latitud").value; // Latitud y Longitud juntas
+    function enviarFormulario() {
+      const nombre = document.getElementById("nombre").value.trim();
+      const codigo = document.getElementById("codigo").value.trim();
+      const latLon = document.getElementById("latitud").value.trim();
 
-            // Guardar los datos en Firestore
-            db.collection("formularios").add({
-                nombre: nombre,
-                codigo: codigo,
-                coordenadas: latLon // Guardar como un solo campo
-            })
-            .then(() => {
-                alert("Datos enviados correctamente.");
-            })
-            .catch((error) => {
-                console.error("Error al enviar los datos: ", error);
-            });
-        }
+      if (!nombre || !codigo || !latLon) {
+        alert("⚠️ Por favor completa todos los campos y obtén las coordenadas.");
+        return;
+      }
 
-        // Función para copiar las coordenadas al portapapeles
-        function copiarCoordenadas() {
-            const coordenadas = document.getElementById("latitud").value;
-            navigator.clipboard.writeText(coordenadas).then(() => {
-                alert("¡Coordenadas copiadas al portapapeles!");
-            }).catch((err) => {
-                alert("Error al copiar las coordenadas: " + err);
-            });
-        }
-    </script>
+      const [latitud, longitud] = latLon.split(",");
+
+      fetch('https://script.google.com/macros/s/AKfycbzTeY0pmn6tmgkZ4DHrhZveRplKm1J1b-4jY8O2vqX_Ktm8kdOtZrXj2r4y6JsdTfZQDQ/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nombre: nombre,
+          codigo: codigo,
+          latitud: latitud,
+          longitud: longitud
+        })
+      })
+      .then(response => response.text())
+      .then(result => {
+        alert("✅ Datos enviados correctamente a Google Sheets.");
+        document.getElementById("nombre").value = "";
+        document.getElementById("codigo").value = "";
+        document.getElementById("latitud").value = "";
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("❌ Error al enviar los datos: " + error.message);
+      });
+    }
+
+    function copiarCoordenadas() {
+      const coordenadas = document.getElementById("latitud").value;
+      if (coordenadas) {
+        navigator.clipboard.writeText(coordenadas).then(() => {
+          alert("📋 ¡Coordenadas copiadas al portapapeles!");
+        }).catch((err) => {
+          alert("❌ Error al copiar: " + err);
+        });
+      } else {
+        alert("⚠️ No hay coordenadas para copiar.");
+      }
+    }
+  </script>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2 class="text-center">Formulario de Datos Personales y Coordenadas</h2>
-        <form class="shadow p-4 rounded bg-light" onsubmit="event.preventDefault(); enviarFormulario();">
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" required>
-            </div>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Formulario de Datos y Coordenadas</h2>
+    <form class="shadow p-4 rounded bg-light" onsubmit="event.preventDefault(); enviarFormulario();">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre del Cliente:</label>
+        <input type="text" class="form-control" id="nombre" required>
+      </div>
 
-            <div class="mb-3">
-                <label for="codigo" class="form-label">Código:</label>
-                <input type="text" class="form-control" id="codigo" required>
-            </div>
+      <div class="mb-3">
+        <label for="codigo" class="form-label">Código del Cliente:</label>
+        <input type="text" class="form-control" id="codigo" required>
+      </div>
 
-            <div class="mb-3">
-                <label for="latitud" class="form-label">Coordenadas (Latitud, Longitud):</label>
-                <input type="text" class="form-control" id="latitud" readonly>
-            </div>
+      <div class="mb-3">
+        <label for="latitud" class="form-label">Coordenadas (Latitud, Longitud):</label>
+        <input type="text" class="form-control" id="latitud" readonly>
+      </div>
 
-            <button type="button" class="btn btn-info w-100" onclick="obtenerCoordenadas()">Obtener Coordenadas</button>
-            <button type="button" class="btn btn-secondary w-100 mt-2" onclick="copiarCoordenadas()">Copiar Coordenadas</button>
-            <button type="submit" class="btn btn-primary w-100 mt-3">Enviar</button>
-        </form>
-    </div>
+      <button type="button" class="btn btn-info w-100" onclick="obtenerCoordenadas()">📍 Obtener Coordenadas</button>
+      <button type="button" class="btn btn-secondary w-100 mt-2" onclick="copiarCoordenadas()">📋 Copiar Coordenadas</button>
+      <button type="submit" class="btn btn-primary w-100 mt-3">📤 Enviar</button>
+    </form>
+  </div>
 </body>
 </html>
