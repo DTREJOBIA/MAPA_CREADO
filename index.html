@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Mapa desde GitHub CSV</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
-    <style>
-        #map { height: 500px; width: 100%; margin-top: 10px; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Mapa de Honduras desde CSV</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    #map { height: 500px; width: 100%; margin-top: 10px; }
+  </style>
 </head>
 <body>
-    <h2>Mapa de puntos desde GitHub CSV</h2>
-    <div id="map"></div>
+  <h2>Mapa de puntos válidos dentro de Honduras</h2>
+  <div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-    <script>
-        const map = L.map('map').setView([14.5, -87], 7); // Centro en Honduras
+  <script>
+    const map = L.map('map').setView([14.5, -87], 7); // Centro en Honduras
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
-        // URL de tu archivo CSV en GitHub (raw)
-        const CSV_URL = 'BASE_PARA_APP_.csv';
+    // URL del archivo CSV en GitHub (RAW)
+    const CSV_URL = 'https://raw.githubusercontent.com/usuario/repositorio/main/BASE_PARA_APP_.csv';
 
-        fetch(CSV_URL)
-            .then(response => response.text())
-            .then(data => {
-                const lines = data.split('\n');
-                const headers = lines[0].split(',');
+    fetch(CSV_URL)
+      .then(response => response.text())
+      .then(data => {
+        const lines = data.split('\n');
+        const headers = lines[0].split(',');
 
-                lines.slice(1).forEach(line => {
-                    const cols = line.split(',');
-                    const nombre = cols[0];
-                    const lat = parseFloat(cols[1]);
-                    const lon = parseFloat(cols[2]);
+        lines.slice(1).forEach(line => {
+          const cols = line.split(',');
+          const nombre = cols[0];
+          const lat = parseFloat(cols[1]);
+          const lon = parseFloat(cols[2]);
 
-                    if (!isNaN(lat) && !isNaN(lon)) {
-                        const marker = L.marker([lat, lon]).addTo(map);
-                        marker.bindPopup(nombre || 'Sin nombre');
-                    }
-                });
-            });
-    </script>
+          // Validación: solo puntos dentro de Honduras y coordenadas válidas
+          if (
+            !isNaN(lat) && !isNaN(lon) &&
+            lat >= 12.9 && lat <= 16.1 &&
+            lon >= -89.4 && lon <= -83.0
+          ) {
+            const marker = L.marker([lat, lon]).addTo(map);
+            marker.bindPopup(nombre || 'Sin nombre');
+          }
+        });
+      });
+  </script>
 </body>
 </html>
