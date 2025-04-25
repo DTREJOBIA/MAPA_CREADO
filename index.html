@@ -1,97 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Formulario con Coordenadas</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <script>
-    function obtenerCoordenadas() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          const latLon = position.coords.latitude + "," + position.coords.longitude;
-          document.getElementById("latitud").value = latLon;
-        }, function() {
-          alert("No se pudieron obtener las coordenadas.");
-        });
-      } else {
-        alert("La geolocalización no es compatible con este navegador.");
-      }
-    }
-
-    function enviarFormulario() {
-      const nombre = document.getElementById("nombre").value;
-      const codigo = document.getElementById("codigo").value;
-      const latLon = document.getElementById("latitud").value;
-
-      if (!nombre || !codigo || !latLon) {
-        alert("Por favor completa todos los campos y obtén las coordenadas.");
-        return;
-      }
-
-      // ✅ Enviar datos a Google Sheets (modo sin CORS)
-      fetch('https://script.google.com/macros/s/AKfycbzTeY0pmn6tmgkZ4DHrhZveRplKm1J1b-4jY8O2vqX_Ktm8kdOtZrXj2r4y6JsdTfZQDQ/exec', {
-        method: 'POST',
-        mode: 'no-cors', // 👈 Aquí está la clave
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          nombre: nombre,
-          codigo: codigo,
-          latitud: latLon.split(",")[0],
-          longitud: latLon.split(",")[1]
-        })
-      })
-      .then(() => {
-        alert("✅ Datos enviados (no se puede confirmar respuesta por no-cors).");
-        document.getElementById("nombre").value = "";
-        document.getElementById("codigo").value = "";
-        document.getElementById("latitud").value = "";
-      })
-      .catch(error => {
-        alert("❌ Error al enviar los datos: " + error);
-      });
-    }
-
-    function copiarCoordenadas() {
-      const coordenadas = document.getElementById("latitud").value;
-      if (coordenadas) {
-        navigator.clipboard.writeText(coordenadas).then(() => {
-          alert("📋 ¡Coordenadas copiadas al portapapeles!");
-        }).catch((err) => {
-          alert("❌ Error al copiar las coordenadas: " + err);
-        });
-      } else {
-        alert("⚠️ No hay coordenadas para copiar.");
-      }
-    }
-  </script>
+    <meta charset="UTF-8">
+    <title>Mapa desde GitHub CSV</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <style>
+        #map { height: 500px; width: 100%; margin-top: 10px; }
+    </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <h2 class="text-center mb-4">Formulario de Datos y Coordenadas</h2>
-    <form class="shadow p-4 rounded bg-light" onsubmit="event.preventDefault(); enviarFormulario();">
-      <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre del Cliente:</label>
-        <input type="text" class="form-control" id="nombre" required>
-      </div>
+    <h2>Mapa de puntos desde GitHub CSV</h2>
+    <div id="map"></div>
 
-      <div class="mb-3">
-        <label for="codigo" class="form-label">Código del Cliente:</label>
-        <input type="text" class="form-control" id="codigo" required>
-      </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-      <div class="mb-3">
-        <label for="latitud" class="form-label">Coordenadas (Latitud, Longitud):</label>
-        <input type="text" class="form-control" id="latitud" readonly>
-      </div>
+    <script>
+        const map = L.map('map').setView([14.5, -87], 7); // Centro en Honduras
 
-      <button type="button" class="btn btn-info w-100" onclick="obtenerCoordenadas()">📍 Obtener Coordenadas</button>
-      <button type="button" class="btn btn-secondary w-100 mt-2" onclick="copiarCoordenadas()">📋 Copiar Coordenadas</button>
-      <button type="submit" class="btn btn-primary w-100 mt-3">📤 Enviar</button>
-    </form>
-  </div>
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // URL de tu archivo CSV en GitHub (raw)
+        const CSV_URL = 'BASE_PARA_APP_.csv';
+
+        fetch(CSV_URL)
+            .then(response => response.text())
+            .then(data => {
+                const lines = data.split('\n');
+                const headers = lines[0].split(',');
+
+                lines.slice(1).forEach(line => {
+                    const cols = line.split(',');
+                    const nombre = cols[0];
+                    const lat = parseFloat(cols[1]);
+                    const lon = parseFloat(cols[2]);
+
+                    if (!isNaN(lat) && !isNaN(lon)) {
+                        const marker = L.marker([lat, lon]).addTo(map);
+                        marker.bindPopup(nombre || 'Sin nombre');
+                    }
+                });
+            });
+    </script>
 </body>
 </html>
