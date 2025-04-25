@@ -2,53 +2,52 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mapa de Honduras desde CSV</title>
+  <title>Mapa desde GitHub - Honduras</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <style>
     #map { height: 500px; width: 100%; margin-top: 10px; }
   </style>
 </head>
 <body>
-  <h2>Mapa de puntos válidos dentro de Honduras</h2>
+  <h2>Mapa con puntos válidos (Honduras)</h2>
   <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
 
   <script>
-    const map = L.map('map').setView([14.5, -87], 7); // Centro en Honduras
+    const map = L.map('map').setView([14.5, -87], 7);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // URL del archivo CSV en GitHub (RAW)
-    const CSV_URL = 'https://raw.githubusercontent.com/DTREJOBIA/MAPA_CREADO/main/BASE_PARA_APP_.csv';
+    // 👇 Reemplaza esta URL con la nueva versión más liviana
+    const CSV_URL = 'https://raw.githubusercontent.com/DTREJOBIA/MAPA_CREADO/main/base_hn.csv';
 
+    Papa.parse(CSV_URL, {
+      download: true,
+      header: true,
+      complete: function(results) {
+        results.data.forEach(row => {
+          const nombre = row['NOMBRE']?.trim();
+          const lat = parseFloat(row['LATITUD']);
+          const lon = parseFloat(row['LONGITUD']);
 
-    fetch(CSV_URL)
-      .then(response => response.text())
-      .then(data => {
-        const lines = data.split('\n');
-        const headers = lines[0].split(',');
-
-        lines.slice(1).forEach(line => {
-          const cols = line.split(',');
-          const nombre = cols[0];
-          const lat = parseFloat(cols[1]);
-          const lon = parseFloat(cols[2]);
-
-          // Validación: solo puntos dentro de Honduras y coordenadas válidas
-          if (
-            !isNaN(lat) && !isNaN(lon) &&
-            lat >= 12.9 && lat <= 16.1 &&
-            lon >= -89.4 && lon <= -83.0
-          ) {
-            const marker = L.marker([lat, lon]).addTo(map);
-            marker.bindPopup(nombre || 'Sin nombre');
+          if (!isNaN(lat) && !isNaN(lon) &&
+              lat >= 12.9 && lat <= 16.1 &&
+              lon >= -89.4 && lon <= -83.0) {
+            L.marker([lat, lon]).addTo(map)
+              .bindPopup(nombre || 'Sin nombre');
           }
         });
-      });
+      },
+      error: function(err) {
+        console.error('Error al cargar CSV:', err);
+      }
+    });
   </script>
 </body>
 </html>
+
 
