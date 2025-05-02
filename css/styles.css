@@ -316,9 +316,9 @@ footer::before {
 
 /* Imagen de fondo transparente */
 .background-image {
-    background: url('https://i.imgur.com/0qVhnMA.jpeg') no-repeat center center fixed;
+    background: url('https://i.imgur.com/8d5Cm5p.jpeg') no-repeat center center fixed;
     background-size: cover;
-    opacity: 0.15;
+    opacity: 0.99;
     position: absolute;
     top: 0;
     left: 0;
