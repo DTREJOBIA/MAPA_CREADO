@@ -296,8 +296,7 @@ footer::before {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 90%;
-    max-width: 1200px;
+    width: 100%;
     gap: 20px;
     text-align: center;
 }
