@@ -461,7 +461,8 @@ footer::before {
 #nosotros, #contacto {
     padding: 60px 20px;
     margin: 50px auto;
-    max-width: 800px;
+    max-width: 95%;
+    width: 100%; 
     background: var(--card-bg);
     border-radius: 20px;
     box-shadow: 0 15px 30px var(--shadow-color);
