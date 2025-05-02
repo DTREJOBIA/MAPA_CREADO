@@ -319,7 +319,7 @@ footer::before {
     background: url('https://i.imgur.com/8d5Cm5p.jpeg') no-repeat center center fixed;
     background-size: cover;
     opacity: 0.99;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
