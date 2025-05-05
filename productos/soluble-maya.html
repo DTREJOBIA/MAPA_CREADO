@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café Maya - CATÁLOGO BIA HONDURAS</title>
+    <title>Productos Café Soluble</title>
     <style>
+        /* Reset y estilos generales */
         * {
             box-sizing: border-box;
         }
@@ -25,6 +26,7 @@
             background-color: #f5f5f5;
         }
 
+        /* Imagen de fondo */
         .background-image {
             position: fixed;
             top: 0;
@@ -35,21 +37,21 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* Esto asegura que la imagen quede estática */
             opacity: 0.9;
             z-index: -1;
         }
 
+        /* Título 3D */
         .title-3d {
             text-align: center;
             font-size: 2em;
-            /* Título más pequeño */
             font-weight: bold;
             color: #004080;
             text-shadow: 2px 2px #a0c4e3;
             margin-top: 20px;
         }
 
+        /* Contenedor principal */
         .container {
             padding: 20px;
             max-width: 1000px;
@@ -57,16 +59,18 @@
             flex: 1;
         }
 
-        .line-list h2 {
+        /* Títulos de listas de productos */
+        .product-list h2 {
             text-align: center;
             color: #000;
         }
 
-        .dark-mode .line-list h2 {
+        .dark-mode .product-list h2 {
             color: #fff;
         }
 
-        .wrapper {
+        /* Grid de productos */
+        .product-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -74,22 +78,25 @@
             margin-top: 20px;
         }
 
-        .line {
+        /* Estilo de cada producto */
+        .product {
             width: 200px;
             text-align: center;
             transition: transform 0.3s;
         }
 
-        .line img {
+        .product img {
             width: 100%;
             height: auto;
             border-radius: 10px;
+            cursor: pointer;
         }
 
-        .line:hover {
+        .product:hover {
             transform: scale(1.05);
         }
 
+        /* Botón centrado */
         .center-button {
             display: block;
             margin: 40px auto 0;
@@ -101,12 +108,14 @@
             font-weight: bold;
         }
 
+        /* Estilos del footer */
         footer {
             width: 100%;
             background-color: #000;
             color: #ccc;
             text-align: center;
             padding: 30px 0;
+            margin-top: 20px;
         }
 
         .dark-mode footer {
@@ -119,6 +128,7 @@
             margin: 10px;
         }
 
+        /* Animación de fundido */
         .fade-in {
             animation: fadeIn 1s ease-in;
         }
@@ -133,6 +143,7 @@
             }
         }
 
+        /* Botón de cambio de tema */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -145,6 +156,7 @@
             z-index: 1000;
         }
 
+        /* Botón de volver al inicio */
         .back-to-top {
             position: fixed;
             bottom: 20px;
@@ -163,6 +175,7 @@
             display: block;
         }
 
+        /* Estilos para el modo oscuro */
         .dark-mode {
             background-color: #000;
             color: #f5f5f5;
@@ -175,6 +188,26 @@
         .dark-mode .center-button {
             background-color: #0055aa;
         }
+
+        /* Estilos para el overlay de la imagen */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
     </style>
 </head>
 
@@ -182,41 +215,29 @@
     <div class="background-image"></div>
     <h1 class="title-3d">CATÁLOGO BIA HONDURAS</h1>
 
-    <div class="container line-list fade-in">
-        <h2>Líneas de Café Maya</h2>
-        <div class="wrapper">
-            <div class="line">
-                <a href="productos/torrefacto-maya.html">
-                    <img src="..\MAYA/Torrefacto maya/Cafe Maya 390 g.jpg" alt="Torrefacto">
-                    <p><strong>Torrefacto</strong></p>
-                </a>
+    <div id="Soluble maya" class="container product-list fade-in">
+        <h2>Productos Café Soluble</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="../MAYA/Cafe Maya Soluble.jpg" alt="Café Puro Maya 340g" onclick="showFullImage(this.src)">
+                <p><strong>Café Maya Soluble</strong> <br> Ristra 96 g 1x4x12 <br> Código: 100089<br> Precio: L. 80</p>
             </div>
-            <div class="line">
-                <a href="productos/selecto-maya.html">
-                    <img src="..\MAYA/CAfe maya selecto/Cafe Maya Selecto.jpg" alt="Selecto">
-                    <p><strong>Café Maya Selecto</strong></p>
-                </a>
-            </div>
-            <div class="line">
-                <a href="productos/puro-maya.html">
-                    <img src="..\MAYA/Cafe Maya Puro molido 340g.jpg" alt="Puro">
-                    <p><strong>Puro</strong></p>
-                </a>
-            </div>
-            <div class="line">
-                <a href="productos/soluble-maya.html">
-                    <img src="..\MAYA/Cafe Maya Soluble.jpg" alt="Soluble">
-                    <p><strong>Soluble</strong></p>
-                </a>
+            <div class="product">
+                <img src="../MAYA/Cafe Maya Soluble.jpg" alt="Coffe Club Molido 340g" onclick="showFullImage(this.src)">
+                <p><strong>Café Maya Soluble </strong><br>Ristra 120 g 1x4x12<br> Código: 100090<br>Precio: L. 80</p>
             </div>
         </div>
-        <a href="..\cafe-maya.html" class="center-button">⬅ Volver</a>
+        <a href="#" class="center-button">⬅ Volver</a>
     </div>
 
     <footer>
         <p>&copy; 2025 BIA HONDURAS. Todos los derechos reservados.</p>
         <p><a href="#" style="color: inherit;">Política de Privacidad</a> | <a href="#" style="color: inherit;">Términos y Condiciones</a></p>
     </footer>
+
+    <div id="imageOverlay" class="overlay">
+        <img src="" alt="Full Size Image">
+    </div>
 
     <script>
         function scrollToTop() {
@@ -230,6 +251,21 @@
             document.body.classList.toggle('dark-mode');
             localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
+
+        function showFullImage(imgSrc) {
+            const overlay = document.getElementById('imageOverlay');
+            const overlayImg = overlay.querySelector('img');
+            overlayImg.src = imgSrc;
+            overlay.style.display = 'flex';
+            overlay.addEventListener('click', closeFullImage);
+        }
+
+        function closeFullImage() {
+            const overlay = document.getElementById('imageOverlay');
+            overlay.style.display = 'none';
+            overlay.removeEventListener('click', closeFullImage);
+        }
+
 
         document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('theme');
