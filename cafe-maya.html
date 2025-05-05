@@ -14,13 +14,13 @@
       padding: 0;
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f5f5;
       color: #000;
     }
 
     body {
       display: flex;
       flex-direction: column;
+      background-color: #f5f5f5;
     }
 
     .background-image {
@@ -32,6 +32,7 @@
       background-image: url('https://i.imgur.com/8d5Cm5p.jpeg');
       background-size: cover;
       background-position: center;
+      background-attachment: fixed; /* Esto asegura que la imagen quede estática */
       opacity: 0.2;
       z-index: -1;
     }
@@ -245,5 +246,6 @@
   </script>
 </body>
 </html>
+
 
 
