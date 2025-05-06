@@ -83,8 +83,6 @@
             width: 200px;
             text-align: center;
             transition: transform 0.3s;
-            position: relative; /* Añadido para posicionar el texto sobre la imagen */
-            overflow: hidden; /* Asegura el contenido no se desborda */
         }
 
         .product img {
@@ -92,41 +90,10 @@
             height: auto;
             border-radius: 10px;
             cursor: pointer;
-            display: block; /* Para evitar espacio extra debajo de la imagen */
         }
 
         .product:hover {
             transform: scale(1.05);
-        }
-
-        /* Estilo para el texto sobre la imagen */
-        .product-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para el texto */
-            padding: 10px;
-            opacity: 0; /* Inicialmente oculto */
-            transition: opacity 0.3s;
-        }
-
-        .product:hover .product-info {
-            opacity: 1; /* Mostrar al pasar el ratón */
-        }
-
-        .product-info strong {
-            display: block; /* Asegura que cada elemento de texto esté en una nueva línea */
-            font-size: 1em;
-            color: #000;
-        }
-
-        .dark-mode .product-info {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .dark-mode .product-info strong {
-            color: #fff;
         }
 
         /* Botón centrado */
@@ -253,75 +220,39 @@
         <div class="product-grid">
             <div class="product">
                 <img src="../GK/Torrefacto/Café ORO 405g.jpg" alt="Café Puro Maya 340g" onclick="showFullImage(this.src)">
-                <div class="product-info">
-                    <strong>Café ORO 405g</strong>
-                    <strong>Código: 010210</strong>
-                    <strong>Precio: L. 115</strong>
-                </div>
+                <p><strong>Café ORO 405g</strong><br> Código: 010210<br>Precio: L. 115</p>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Café ORO 216g.jpg" alt="Café ORO 216g" onclick="showFullImage(this.src)">
-                <div class="product-info">
-                    <strong>Café ORO 216g</strong>
-                    <strong>Código: 010211</strong>
-                    <strong>Precio: L. 62</strong>
-                </div>
+                <p><strong>Café ORO 216g</strong><br> Código: 010211<br> Precio: L. 62 </p>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe ORO 8 oz.jpg" alt="Cafe ORO 8 oz" onclick="showFullImage(this.src)">
-                <div class="product-info">
-                    <strong>Cafe ORO 8 oz</strong>
-                    <strong>Código: 010203</strong>
-                    <strong>Precio: L. 59</strong>
-                </div>
+                <p><strong>Cafe ORO 8 oz </strong><br>Código: 010203 <br> Precio: L. 59</p>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Café Oro 6 oz.jpg" alt="Café Maya Palo 444g" onclick="showFullImage(this.src)">
-                <div class="product-info">
-                    <strong>Café Oro 6 oz</strong>
-                    <strong>Código: 010205</strong>
-                    <strong>Precio: L. 38</strong>
-                </div>
+                <p><strong>Café Oro 6 oz </strong><br> Código: 010205 <br> Precio: L. 38</p>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe INDIO 390g.jpg" alt="Cafe INDIO 390g" onclick="showFullImage(this.src)">
-                <div class="product-info">
-                    <strong>Cafe INDIO 390g</strong>
-                    <strong>Código: 010110</strong>
-                    <strong>Precio: L. 107</strong>
-                </div>
+                <p><strong>Cafe INDIO 390g</strong><br> Código: 010110<br> Precio: L. 107</p>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe INDIO 390g.jpg" alt="Cafe REY 390g" onclick="showFullImage(this.src)">
-                <div class="product-info">
-                    <strong>Cafe REY 390g</strong>
-                    <strong>Código: 010310</strong>
-                    <strong>Precio: L. 107</strong>
-                </div>
+                <p><strong>Cafe REY 390g </strong><br>Código: 010310 <br> Precio: L. 107</p>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe INDIO 208g.jpg" alt="Cafe INDIO 208g" onclick="showFullImage(this.src)">
-                <div class="product-info">
-                    <strong>Cafe INDIO 208g</strong>
-                    <strong>Código: 010111</strong>
-                    <strong>Precio: L. 58</strong>
-                </div>
+                <p><strong>Cafe INDIO 208g </strong><br>Código: 010111 <br> Precio: L. 58</p>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe CORONA 390g.jpg" alt="Cafe CORONA 390g" onclick="showFullImage(this.src)">
-                <div class="product-info">
-                    <strong>Cafe CORONA 390g</strong>
-                    <strong>Código: 010410</strong>
-                    <strong>Precio: L. 99</strong>
-                </div>
+                <p><strong>Cafe CORONA 390g </strong><br>Código: 010410<br>Precio: L. 99</p>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe MI DELICIA 375g.jpg" alt="Cafe MI DELICIA 375g" onclick="showFullImage(this.src)">
-                <div class="product-info">
-                    <strong>Cafe MI DELICIA 375g</strong>
-                    <strong>Código: 010510</strong>
-                    <strong>Precio: L. 85</strong>
-                </div>
+                <p><strong>Cafe MI DELICIA 375g</strong><br>Código: 010510<br>Precio: L. 85</p>
             </div>
         </div>
         <a href="javascript:history.back()" class="center-button">⬅ Volver</a>
@@ -394,7 +325,6 @@
 </body>
 
 </html>
-       
 
 
 
