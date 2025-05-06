@@ -2,10 +2,11 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Productos Guandi Chocole - CATÁLOGO BIA HONDURAS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos de Torrefacto - Café INDIO</title>
     <style>
+        /* Reset y estilos generales */
         * {
             box-sizing: border-box;
         }
@@ -25,6 +26,7 @@
             background-color: #f5f5f5;
         }
 
+        /* Imagen de fondo */
         .background-image {
             position: fixed;
             top: 0;
@@ -35,21 +37,21 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* Esto asegura que la imagen quede estática */
             opacity: 0.9;
             z-index: -1;
         }
 
+        /* Título 3D */
         .title-3d {
             text-align: center;
             font-size: 2em;
-            /* Título más pequeño */
             font-weight: bold;
             color: #004080;
             text-shadow: 2px 2px #a0c4e3;
             margin-top: 20px;
         }
 
+        /* Contenedor principal */
         .container {
             padding: 20px;
             max-width: 1000px;
@@ -57,6 +59,7 @@
             flex: 1;
         }
 
+        /* Títulos de listas de productos */
         .product-list h2 {
             text-align: center;
             color: #000;
@@ -66,53 +69,67 @@
             color: #fff;
         }
 
+        /* Grid de productos */
         .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 20px;
             margin-top: 20px;
         }
 
+        /* Estilo de cada producto */
         .product {
+            width: 200px;
             text-align: center;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
-        }
-
-        .dark-mode .product {
-            background-color: #333;
-            color: #eee;
-            border-color: #555;
-        }
-
-        .product:hover {
-            transform: scale(1.03);
+            position: relative; /* Añadido para posicionar el texto sobre la imagen */
+            overflow: hidden; /* Asegura el contenido no se desborda */
         }
 
         .product img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.3s;
+            display: block; /* Para evitar espacio extra debajo de la imagen */
         }
 
-        .product img.zoomed {
-            transform: scale(2.0);
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        .product:hover {
+            transform: scale(1.05);
         }
 
-        .product p {
-            margin-top: 10px;
-            font-size: 0.9em;
+        /* Estilo para el texto sobre la imagen */
+        .product-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para el texto */
+            padding: 10px;
+            opacity: 0; /* Inicialmente oculto */
+            transition: opacity 0.3s;
         }
 
+        .product:hover .product-info {
+            opacity: 1; /* Mostrar al pasar el ratón */
+        }
+
+        .product-info strong {
+            display: block; /* Asegura que cada elemento de texto esté en una nueva línea */
+            font-size: 1em;
+            color: #000;
+        }
+
+        .dark-mode .product-info {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .dark-mode .product-info strong {
+            color: #fff;
+        }
+
+        /* Botón centrado */
         .center-button {
             display: block;
             margin: 40px auto 0;
@@ -124,12 +141,14 @@
             font-weight: bold;
         }
 
+        /* Estilos del footer */
         footer {
             width: 100%;
             background-color: #000;
             color: #ccc;
             text-align: center;
             padding: 30px 0;
+            margin-top: 20px;
         }
 
         .dark-mode footer {
@@ -142,6 +161,7 @@
             margin: 10px;
         }
 
+        /* Animación de fundido */
         .fade-in {
             animation: fadeIn 1s ease-in;
         }
@@ -156,6 +176,7 @@
             }
         }
 
+        /* Botón de cambio de tema */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -168,6 +189,7 @@
             z-index: 1000;
         }
 
+        /* Botón de volver al inicio */
         .back-to-top {
             position: fixed;
             bottom: 20px;
@@ -186,6 +208,7 @@
             display: block;
         }
 
+        /* Estilos para el modo oscuro */
         .dark-mode {
             background-color: #000;
             color: #f5f5f5;
@@ -198,6 +221,26 @@
         .dark-mode .center-button {
             background-color: #0055aa;
         }
+
+        /* Estilos para el overlay de la imagen */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
     </style>
 </head>
 
@@ -205,45 +248,80 @@
     <div class="background-image"></div>
     <h1 class="title-3d">CATÁLOGO BIA HONDURAS</h1>
 
-    <div id="Chocale_guandi" class="container product-list fade-in">
-        <h2>Productos Guandi Chocole</h2>
+    <div id="INDIO_PRODUCTOS_TORREFACTO" class="container product-list fade-in">
+        <h2>Productos de Torrefacto</h2>
         <div class="product-grid">
             <div class="product">
-                <img src="https://i.imgur.com/1xFX5bU.jpeg" alt="Café Puro Maya 340g" onclick="toggleImageSize(this)">
-                <p><strong>Tira Chocale Banana </strong> <br> 8x10x35 g <br> Código:310099 <br> Precio: L. 64</p>
+                <img src="../GK/Torrefacto/Café ORO 405g.jpg" alt="Café Puro Maya 340g" onclick="showFullImage(this.src)">
+                <div class="product-info">
+                    <strong>Café ORO 405g</strong>
+                    <strong>Código: 010210</strong>
+                    <strong>Precio: L. 115</strong>
+                </div>
             </div>
             <div class="product">
-                <img src="https://i.imgur.com/KlKRTSL.jpeg" alt="Coffe Club Molido 340g" onclick="toggleImageSize(this)">
-                <p><strong>Tira Chocale Fresa</strong><br> 8x10x35 g<br> Código:310100<br> Precio: L. 64</p>
+                <img src="../GK/Torrefacto/Café ORO 216g.jpg" alt="Café ORO 216g" onclick="showFullImage(this.src)">
+                <div class="product-info">
+                    <strong>Café ORO 216g</strong>
+                    <strong>Código: 010211</strong>
+                    <strong>Precio: L. 62</strong>
+                </div>
             </div>
             <div class="product">
-                <img src="https://i.imgur.com/l557zUe.jpeg" alt="Coffe Club Grano 340g" onclick="toggleImageSize(this)">
-                <p><strong>Malvavisco Tira Chocale</strong><br> 8x10x35 g.<br>Código:310043 <br> Precio: L. 59</p>
+                <img src="../GK/Torrefacto/Cafe ORO 8 oz.jpg" alt="Cafe ORO 8 oz" onclick="showFullImage(this.src)">
+                <div class="product-info">
+                    <strong>Cafe ORO 8 oz</strong>
+                    <strong>Código: 010203</strong>
+                    <strong>Precio: L. 59</strong>
+                </div>
             </div>
             <div class="product">
-                <img src="../Guandy/TIRA CHOCALE CHOCOLATE.jpg" alt="Coffe Club Grano 340g"
-                    onclick="toggleImageSize(this)">
-                <p><strong>Tira Chocale Chocolate</strong><br> 8x10x35 g<br> Código:310097 <br> Precio: L.59</p>
+                <img src="../GK/Torrefacto/Café Oro 6 oz.jpg" alt="Café Maya Palo 444g" onclick="showFullImage(this.src)">
+                <div class="product-info">
+                    <strong>Café Oro 6 oz</strong>
+                    <strong>Código: 010205</strong>
+                    <strong>Precio: L. 38</strong>
+                </div>
             </div>
             <div class="product">
-                <img src="../Guandy/TIRA CHOCALE CARNAVAL.jpg" alt="Coffe Club Grano 340g"
-                    onclick="toggleImageSize(this)">
-                <p><strong>Tira Chocale Carnaval</strong><br> 8x10x35 g<br>Código:310098<br> Precio: L.64</p>
+                <img src="../GK/Torrefacto/Cafe INDIO 390g.jpg" alt="Cafe INDIO 390g" onclick="showFullImage(this.src)">
+                <div class="product-info">
+                    <strong>Cafe INDIO 390g</strong>
+                    <strong>Código: 010110</strong>
+                    <strong>Precio: L. 107</strong>
+                </div>
             </div>
             <div class="product">
-                <img src="../Guandy/Tira choco napolitano.png" alt="Coffe Club Grano 340g"
-                    onclick="toggleImageSize(this)">
-                <p><strong>Tira Choco Napolitano</strong><br> 24x12x25g<br>Código:310093<br> Precio: L. 50</p>
+                <img src="../GK/Torrefacto/Cafe INDIO 390g.jpg" alt="Cafe REY 390g" onclick="showFullImage(this.src)">
+                <div class="product-info">
+                    <strong>Cafe REY 390g</strong>
+                    <strong>Código: 010310</strong>
+                    <strong>Precio: L. 107</strong>
+                </div>
             </div>
             <div class="product">
-                <img src="../Guandy/TIRA CHOCALE PLATANO.jpg" alt="Coffe Club Grano 340g"
-                    onclick="toggleImageSize(this)">
-                <p><strong>Tira Chocale Banana</strong><br> 8x10x35 g<br>Código:310099<br> Precio: L.64</p>
+                <img src="../GK/Torrefacto/Cafe INDIO 208g.jpg" alt="Cafe INDIO 208g" onclick="showFullImage(this.src)">
+                <div class="product-info">
+                    <strong>Cafe INDIO 208g</strong>
+                    <strong>Código: 010111</strong>
+                    <strong>Precio: L. 58</strong>
+                </div>
             </div>
             <div class="product">
-                <img src="../Guandy/TIRA CHOCALE FRESA.jpg" alt="Coffe Club Grano 340g"
-                    onclick="toggleImageSize(this)">
-                <p><strong>Tira Chocale Fresa</strong><br> 8x10x35 g<br>Código:310100<br> Precio: L.59</p>
+                <img src="../GK/Torrefacto/Cafe CORONA 390g.jpg" alt="Cafe CORONA 390g" onclick="showFullImage(this.src)">
+                <div class="product-info">
+                    <strong>Cafe CORONA 390g</strong>
+                    <strong>Código: 010410</strong>
+                    <strong>Precio: L. 99</strong>
+                </div>
+            </div>
+            <div class="product">
+                <img src="../GK/Torrefacto/Cafe MI DELICIA 375g.jpg" alt="Cafe MI DELICIA 375g" onclick="showFullImage(this.src)">
+                <div class="product-info">
+                    <strong>Cafe MI DELICIA 375g</strong>
+                    <strong>Código: 010510</strong>
+                    <strong>Precio: L. 85</strong>
+                </div>
             </div>
         </div>
         <a href="javascript:history.back()" class="center-button">⬅ Volver</a>
@@ -254,6 +332,10 @@
         <p>&copy; 2025 BIA HONDURAS. Todos los derechos reservados.</p>
         <p><a href="#" style="color: inherit;">Política de Privacidad</a> | <a href="#" style="color: inherit;">Términos y Condiciones</a></p>
     </footer>
+
+    <div id="imageOverlay" class="overlay">
+        <img src="" alt="Full Size Image">
+    </div>
 
     <script>
         function scrollToTop() {
@@ -268,7 +350,22 @@
             localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        function showFullImage(imgSrc) {
+            const overlay = document.getElementById('imageOverlay');
+            const overlayImg = overlay.querySelector('img');
+            overlayImg.src = imgSrc;
+            overlay.style.display = 'flex';
+            overlay.addEventListener('click', closeFullImage);
+        }
+
+        function closeFullImage() {
+            const overlay = document.getElementById('imageOverlay');
+            overlay.style.display = 'none';
+            overlay.removeEventListener('click', closeFullImage);
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
@@ -277,7 +374,7 @@
             const themeToggle = document.createElement('div');
             themeToggle.className = 'theme-toggle';
             themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
-            themeToggle.addEventListener('click', function () {
+            themeToggle.addEventListener('click', function() {
                 toggleDarkMode();
                 this.innerHTML = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
             });
@@ -289,18 +386,10 @@
             backToTopBtn.addEventListener('click', scrollToTop);
             document.body.appendChild(backToTopBtn);
 
-            window.addEventListener('scroll', function () {
+            window.addEventListener('scroll', function() {
                 backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
             });
         });
-
-        function showPage(url) {
-            window.location.href = url; // abre en la misma pestaña
-        }
-
-        function toggleImageSize(img) {
-            img.classList.toggle('zoomed');
-        }
     </script>
 </body>
 
