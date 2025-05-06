@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos Gunadi Gomitas - CATÁLOGO BIA HONDURAS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            color: #000;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: #f5f5f5;
+        }
+
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.imgur.com/8d5Cm5p.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* Esto asegura que la imagen quede estática */
+            opacity: 0.9;
+            z-index: -1;
+        }
+
+        .title-3d {
+            text-align: center;
+            font-size: 2em;
+            /* Título más pequeño */
+            font-weight: bold;
+            color: #004080;
+            text-shadow: 2px 2px #a0c4e3;
+            margin-top: 20px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+            flex: 1;
+        }
+
+        .product-list h2 {
+            text-align: center;
+            color: #000;
+        }
+
+        .dark-mode .product-list h2 {
+            color: #fff;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .product {
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .dark-mode .product {
+            background-color: #333;
+            color: #eee;
+            border-color: #555;
+        }
+
+        .product:hover {
+            transform: scale(1.03);
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .product img.zoomed {
+            transform: scale(2.0);
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .product p {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .center-button {
+            display: block;
+            margin: 40px auto 0;
+            padding: 10px 20px;
+            background-color: #004080;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #000;
+            color: #ccc;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .dark-mode footer {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin: 10px;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ccc;
+            border-radius: 50%;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #004080;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            display: block;
+        }
+
+        .dark-mode {
+            background-color: #000;
+            color: #f5f5f5;
+        }
+
+        .dark-mode .background-image {
+            display: none;
+        }
+
+        .dark-mode .center-button {
+            background-color: #0055aa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-image"></div>
+    <h1 class="title-3d">CATÁLOGO BIA HONDURAS</h1>
+
+    <div id="Gomitas_guandi" class="container product-list fade-in">
+        <h2>Productos Gunadi Gomitas</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="Guandy/Gomitas pinguino.jpg" alt="Café Puro Maya 340g" onclick="toggleImageSize(this)">
+                <p><strong>Gomitas pingüinos </strong> <br> 20x100 g <br> Código: 310078 <br> Precio: L. 25</p>
+            </div>
+            <div class="product">
+                <img src="Guandy/Gomitas maracuya.jpg" alt="Coffe Club Molido 340g" onclick="toggleImageSize(this)">
+                <p><strong>Gomitas Maracuyá </strong><br>20x100 g <br> Código: 310079<br> Precio: L. 27</p>
+            </div>
+            <div class="product">
+                <img src="Guandy/Gomitas pulpo.jpg" alt="Coffe Club Grano 340g" onclick="toggleImageSize(this)">
+                <p><strong>Gomitas Pulpos </strong><br> 20 x 100g <br>Código:310081<br> Precio: L. 25</p>
+            </div>
+            <div class="product">
+                <img src="Guandy/Gomitas gajos citricos.jpg" alt="Coffe Club Grano 340g"
+                    onclick="toggleImageSize(this)">
+                <p><strong>Gummies Gajos Cítricos</strong><br> 20x100g<br> Código:310082<br> Precio: L. 25</p>
+            </div>
+            <div class="product">
+                <img src="Guandy/Crsimelos gota.jpg" alt="Coffe Club Grano 340g" onclick="toggleImageSize(this)">
+                <p><strong>Crismelos Gota</strong><br>1x20x100g<br>Código:310092<br> Precio: L.19</p>
+            </div>
+        </div>
+        <a href="index.html" class="center-button">⬅ Volver</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 BIA HONDURAS. Todos los derechos reservados.</p>
+        <p><a href="#" style="color: inherit;">Política de Privacidad</a> | <a href="#" style="color: inherit;">Términos y Condiciones</a></p>
+    </footer>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+
+            const themeToggle = document.createElement('div');
+            themeToggle.className = 'theme-toggle';
+            themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
+            themeToggle.addEventListener('click', function () {
+                toggleDarkMode();
+                this.innerHTML = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
+            });
+            document.body.appendChild(themeToggle);
+
+            const backToTopBtn = document.createElement('div');
+            backToTopBtn.className = 'back-to-top';
+            backToTopBtn.innerHTML = '↑';
+            backToTopBtn.addEventListener('click', scrollToTop);
+            document.body.appendChild(backToTopBtn);
+
+            window.addEventListener('scroll', function () {
+                backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
+            });
+        });
+
+        function showPage(url) {
+            window.location.href = url; // abre en la misma pestaña
+        }
+
+        function toggleImageSize(img) {
+            img.classList.toggle('zoomed');
+        }
+    </script>
+</body>
+
+</html>
+       
+
+
+
+
