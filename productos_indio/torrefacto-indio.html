@@ -238,32 +238,35 @@
     font-size: 14px;
   }
 
+
   #cart-panel {
-  position: fixed;
-  top: 5%;
-  left: 0;
-  width: 500px;
-  height: 80%;
-  background-color: #ffffff;
-  border-top-right-radius: 10px;
-  border: 1px solid #ddd;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-  z-index: 1000;
-  overflow-y: auto;
-  font-size: 0.75rem; /* 👈 Este controla el tamaño general del texto */
-  padding: 8px; /* 👈 Este ajusta el espacio interior del panel */
-}
+   position: fixed;
+   top: 7%;
+   left: 0;
+   /* Ancho inicial, pero permitimos que crezca */
+   width: 400px;
+   max-width: 90%; /* Evita que se haga demasiado grande en pantallas pequeñas */
+   height: 80%;
+   background-color: #ffffff;
+   border-top-right-radius: 10px;
+   border: 1px solid #ddd;
+   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+   transform: translateX(-100%);
+   transition: transform 0.3s ease;
+   z-index: 1000;
+   overflow-y: auto;
+   /* Permitimos que el panel se expanda horizontalmente */
+   overflow-x: auto;
+   white-space: nowrap;
+  }
 
-#cart-panel button {
-  font-size: 0.7rem; /* 👈 Tamaño del texto de los botones */
-  padding: 3px 6px;  /* 👈 Tamaño de los botones: vertical (3px), horizontal (6px) */
-}
+  #cartTable {
+   width: auto; /* La tabla se ajusta al contenido */
+   border-collapse: collapse;
+   margin-bottom: 10px;
+  }
 
-#cart-panel table {
-  font-size: 0.7rem; /* 👈 Tamaño del texto de la tabla del carrito */
-}
+
 
 
 
