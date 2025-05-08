@@ -240,10 +240,10 @@
 
   #cart-panel {
   position: fixed;
-  top: 7%; /* Empieza a media pantalla */
+  top: 5%;
   left: 0;
-  width: 400px;
-  height: 80%; /* Solo ocupa la mitad inferior */
+  width: 440px;
+  height: 80%;
   background-color: #ffffff;
   border-top-right-radius: 10px;
   border: 1px solid #ddd;
@@ -252,7 +252,19 @@
   transition: transform 0.3s ease;
   z-index: 1000;
   overflow-y: auto;
+  font-size: 0.75rem; /* 👈 Este controla el tamaño general del texto */
+  padding: 8px; /* 👈 Este ajusta el espacio interior del panel */
 }
+
+#cart-panel button {
+  font-size: 0.7rem; /* 👈 Tamaño del texto de los botones */
+  padding: 3px 6px;  /* 👈 Tamaño de los botones: vertical (3px), horizontal (6px) */
+}
+
+#cart-panel table {
+  font-size: 0.7rem; /* 👈 Tamaño del texto de la tabla del carrito */
+}
+
 
 
 #cart-panel.open {
@@ -290,9 +302,7 @@
 
 
 
-
-
-
+ 
 
 
 
@@ -312,7 +322,12 @@
             <div class="product">
                 <img src="../GK/Torrefacto/Café ORO 405g.jpg" alt="Café Puro Maya 340g" onclick="showFullImage(this.src)">
                 <p><strong>Café ORO 405g</strong><br> Código: 170028<br>Precio: L. 115</p>
-                <button onclick="addToCart('170028', 'Café ORO', '405g', 115)">🛒 Agregar</button>       
+                <button onclick="addToCart('170028', 'Café ORO', '405g', 115)">🛒 Agregar</button>     
+                <td>
+                  <button onclick="changeQuantity('${code}', -1)">-</button>
+              
+                  <button onclick="changeQuantity('${code}', 1)">+</button>
+                 </td>  
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Café ORO 216g.jpg" alt="Café ORO 216g" onclick="showFullImage(this.src)">
@@ -369,226 +384,222 @@
         <img src="" alt="Full Size Image">
     </div>
 
-    <script>
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
 
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-        }
-
-        function showFullImage(imgSrc) {
-            const overlay = document.getElementById('imageOverlay');
-            const overlayImg = overlay.querySelector('img');
-            overlayImg.src = imgSrc;
-            overlay.style.display = 'flex';
-            overlay.addEventListener('click', closeFullImage);
-        }
-
-        function closeFullImage() {
-            const overlay = document.getElementById('imageOverlay');
-            overlay.style.display = 'none';
-            overlay.removeEventListener('click', closeFullImage);
-        }
-
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-
-            const themeToggle = document.createElement('div');
-            themeToggle.className = 'theme-toggle';
-            themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
-            themeToggle.addEventListener('click', function() {
-                toggleDarkMode();
-                this.innerHTML = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
-            });
-            document.body.appendChild(themeToggle);
-
-            const backToTopBtn = document.createElement('div');
-            backToTopBtn.className = 'back-to-top';
-            backToTopBtn.innerHTML = '↑';
-            backToTopBtn.addEventListener('click', scrollToTop);
-            document.body.appendChild(backToTopBtn);
-
-            window.addEventListener('scroll', function() {
-                backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
-            });
-        });
-    </script>
-<!-- Ícono del carrito fijo -->
-<!-- Ícono del carrito fijo -->
-<!-- Ícono del carrito fijo -->
-<!-- Ícono del carrito fijo -->
 
 <!-- 🔹 ICONO FLOTANTE -->
 <div id="cart-icon" onclick="toggleCartPanel()">
-    🛒 <span id="cart-count">0</span>
-  </div>
-   <!-- 🔹 PANEL DEL CARRITO -->
-  <!-- 🔹 PANEL DEL CARRITO -->
-  <div id="cart-panel">
-    <h2>🛒 Carrito</h2>
-    <table id="cartTable">
-      <thead>
-        <tr>
-          <th>Código</th>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Cant.</th>
-          <th>Subtotal</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <h3>Total: <span id="totalPrice">L. 0.00</span></h3>
-    <button onclick="downloadPDF()">📥 Descargar PDF</button>
-    <button onclick="emptyCart()">🗑 Vaciar carrito</button>
-  </div>
+  🛒 <span id="cart-count">0</span>
+</div>
  <!-- 🔹 PANEL DEL CARRITO -->
- <!-- 🔹 PANEL DEL CARRITO -->
+<!-- 🔹 PANEL DEL CARRITO -->
+<div id="cart-panel">
+  <h2>🛒 Carrito</h2>
+  <table id="cartTable">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Cant.</th>
+        <th>Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <h3>Total: <span id="totalPrice">L. 0.00</span></h3>
+  <button onclick="downloadPDF()">📥 Descargar PDF</button>
+  <button onclick="emptyCart()">🗑 Vaciar carrito</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<!-- Carrito flotante mejorado -->
-<!-- Ícono flotante del carrito -->
-<!-- 🔹 BOTÓN FLOTANTE DEL CARRITO -->
 
-  
- 
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script>
-    let cart = {};
-  
-    function toggleCartPanel() {
-      document.getElementById('cart-panel').classList.toggle('open');
 
-      
-    }
-  
-    function addToCart(code, name, description, price) {
-      if (!cart[code]) {
-        cart[code] = { name, description, quantity: 1, price };
-      } else {
-        cart[code].quantity += 1;
+<script>
+  function scrollToTop() {
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  }
+
+  function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+  }
+
+  function showFullImage(imgSrc) {
+      const overlay = document.getElementById('imageOverlay');
+      const overlayImg = overlay.querySelector('img');
+      overlayImg.src = imgSrc;
+      overlay.style.display = 'flex';
+      overlay.addEventListener('click', closeFullImage);
+  }
+
+  function closeFullImage() {
+      const overlay = document.getElementById('imageOverlay');
+      overlay.style.display = 'none';
+      overlay.removeEventListener('click', closeFullImage);
+  }
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+          document.body.classList.add('dark-mode');
       }
+
+      const themeToggle = document.createElement('div');
+      themeToggle.className = 'theme-toggle';
+      themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
+      themeToggle.addEventListener('click', function() {
+          toggleDarkMode();
+          this.innerHTML = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
+      });
+      document.body.appendChild(themeToggle);
+
+      const backToTopBtn = document.createElement('div');
+      backToTopBtn.className = 'back-to-top';
+      backToTopBtn.innerHTML = '↑';
+      backToTopBtn.addEventListener('click', scrollToTop);
+      document.body.appendChild(backToTopBtn);
+
+      window.addEventListener('scroll', function() {
+          backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
+      });
+
+      loadCartFromStorage(); // Asegúrate de que esta línea esté aquí para cargar el carrito al inicio
+  });
+
+
+  let cart = {};
+
+  function toggleCartPanel() {
+      document.getElementById('cart-panel').classList.toggle('open');
+  }
+
+  function addToCart(code, name, description, price) {
+      cart[code] = cart[code] || { name, description, quantity: 0, price };
+      cart[code].quantity += 1;
       updateCartUI();
-    }
-  
-    function removeFromCart(code) {
+  }
+
+  function removeFromCart(code) {
       delete cart[code];
       updateCartUI();
-    }
-  
-    function emptyCart() {
+  }
+
+  function changeQuantity(code, change) {
+      cart[code].quantity += change;
+      if (cart[code].quantity <= 0) {
+          delete cart[code];
+      }
+      updateCartUI();
+  }
+
+  function emptyCart() {
       cart = {};
       updateCartUI();
-    }
-  
-    function updateCartUI() {
+  }
+
+  function updateCartUI() {
       const tbody = document.querySelector('#cartTable tbody');
       const totalPriceEl = document.getElementById('totalPrice');
       const cartCountEl = document.getElementById('cart-count');
       tbody.innerHTML = '';
-  
+
       let total = 0;
       let totalItems = 0;
-  
-      for (let code in cart) {
-        const item = cart[code];
-        const subtotal = item.quantity * item.price;
-        total += subtotal;
-        totalItems += item.quantity;
-  
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${code}</td>
-          <td>${item.name}</td>
-          <td>${item.description}</td>
-          <td>${item.quantity}</td>
-          <td>L. ${subtotal.toFixed(2)}</td>
-          <td><button onclick="removeFromCart('${code}')">❌</button></td>
-        `;
-        tbody.appendChild(tr);
+
+      for (const code in cart) {
+          const item = cart[code];
+          const subtotal = item.quantity * item.price;
+          total += subtotal;
+          totalItems += item.quantity;
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+              <td>${code}</td>
+              <td>${item.name}</td>
+              <td>${item.description}</td>
+              <td>${item.quantity}</td>
+              <td>L. ${subtotal.toFixed(2)}</td>
+              <td>
+                  <div style="display: flex; gap: 5px;">
+                      <button onclick="changeQuantity('${code}', -1)">-</button>
+                      <button onclick="changeQuantity('${code}', 1)">+</button>
+                      <button onclick="removeFromCart('${code}')">❌</button>
+                  </div>
+              </td>
+          `;
+          tbody.appendChild(tr);
       }
-  
+
       totalPriceEl.textContent = 'L. ' + total.toFixed(2);
       cartCountEl.textContent = totalItems;
-  
       localStorage.setItem('cart', JSON.stringify(cart));
-    }
-  
-    function loadCartFromStorage() {
-      const savedCart = localStorage.getItem('cart');
-      if (savedCart) {
-        cart = JSON.parse(savedCart);
-        updateCartUI();
-      }
-    }
-  
-    function downloadPDF() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  doc.setFontSize(16);
-  doc.text('Resumen del Carrito', 105, 15, null, null, 'center');
-
-  doc.setFontSize(10);
-  let y = 30;
-  let total = 0;
-
-  // Encabezados con posiciones fijas
-  doc.setFont(undefined, 'bold');
-  doc.text("Código", 10, y);
-  doc.text("Nombre", 35, y);
-  doc.text("Descripción", 75, y);
-  doc.text("Cant.", 125, y);
-  doc.text("Precio", 140, y);
-  doc.text("Subtotal", 165, y);
-  doc.setFont(undefined, 'normal');
-
-  y += 8;
-
-  for (let code in cart) {
-    const item = cart[code];
-    const subtotal = item.quantity * item.price;
-    total += subtotal;
-
-    // Asegura que no se salga del margen inferior (salto de página)
-    if (y > 270) {
-      doc.addPage();
-      y = 20;
-    }
-
-    doc.text(code, 10, y);
-    doc.text(item.name, 35, y);
-    doc.text(item.description, 75, y, { maxWidth: 45 }); // Opcional: corta si es muy largo
-    doc.text(String(item.quantity), 125, y);
-    doc.text(`L. ${item.price.toFixed(2)}`, 140, y);
-    doc.text(`L. ${subtotal.toFixed(2)}`, 165, y);
-
-    y += 8;
   }
 
-  // Total general
-  y += 10;
-  doc.setFont(undefined, 'bold');
-  doc.text(`Total: L. ${total.toFixed(2)}`, 165, y);
+  function loadCartFromStorage() {
+      const savedCart = localStorage.getItem('cart');
+      if (savedCart) {
+          cart = JSON.parse(savedCart);
+          updateCartUI();
+      }
+  }
 
-  doc.save('carrito.pdf');
-}
+  function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
 
-  
-  
-    window.addEventListener('DOMContentLoaded', loadCartFromStorage);
-  </script>
+      doc.setFontSize(16);
+      doc.text('Resumen del Carrito', 105, 15, null, null, 'center');
+      doc.setFontSize(10);
+
+      let y = 30;
+      let total = 0;
+
+      // Encabezados con posiciones fijas
+      doc.setFont(undefined, 'bold');
+      doc.text("Código", 10, y);
+      doc.text("Nombre", 35, y);
+      doc.text("Descripción", 75, y);
+      doc.text("Cant.", 125, y);
+      doc.text("Precio", 140, y);
+      doc.text("Subtotal", 165, y);
+      doc.setFont(undefined, 'normal');
+
+      y += 8;
+
+      for (const code in cart) {
+          const item = cart[code];
+          const subtotal = item.quantity * item.price;
+          total += subtotal;
+
+          // Asegura que no se salga del margen inferior (salto de página)
+          if (y > 270) {
+              doc.addPage();
+              y = 20;
+          }
+
+          doc.text(code, 10, y);
+          doc.text(item.name, 35, y);
+          doc.text(item.description, 75, y, { maxWidth: 45 }); // Opcional: corta si es muy largo
+          doc.text(String(item.quantity), 125, y);
+          doc.text(`L. ${item.price.toFixed(2)}`, 140, y);
+          doc.text(`L. ${subtotal.toFixed(2)}`, 165, y);
+
+          y += 8;
+      }
+
+      // Total general
+      y += 10;
+      doc.setFont(undefined, 'bold');
+      doc.text(`Total: L. ${total.toFixed(2)}`, 165, y);
+
+      doc.save('carrito.pdf');
+  }
+</script>
   
 
 
