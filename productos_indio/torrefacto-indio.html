@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <title>Productos de Torrefacto - Café INDIO</title>
     <style>
         /* Reset y estilos generales */
@@ -532,31 +534,58 @@
     }
   
     function downloadPDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      doc.setFontSize(12);
-      doc.text('Resumen del Carrito', 10, 10);
-      let y = 20;
-      let total = 0;
-  
-      doc.text("Código | Nombre | Descripción | Cantidad | Precio | Subtotal", 10, y);
-      y += 10;
-  
-      for (let code in cart) {
-        const item = cart[code];
-        const subtotal = item.quantity * item.price;
-        total += subtotal;
-        doc.text(
-          `${code} | ${item.name} | ${item.description} | ${item.quantity} | L. ${item.price.toFixed(2)} | L. ${subtotal.toFixed(2)}`,
-          10, y
-        );
-        y += 10;
-      }
-  
-      y += 10;
-      doc.text(`Total: L. ${total.toFixed(2)}`, 10, y);
-      doc.save('carrito.pdf');
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  doc.setFontSize(16);
+  doc.text('Resumen del Carrito', 105, 15, null, null, 'center');
+
+  doc.setFontSize(10);
+  let y = 30;
+  let total = 0;
+
+  // Encabezados con posiciones fijas
+  doc.setFont(undefined, 'bold');
+  doc.text("Código", 10, y);
+  doc.text("Nombre", 35, y);
+  doc.text("Descripción", 75, y);
+  doc.text("Cant.", 125, y);
+  doc.text("Precio", 140, y);
+  doc.text("Subtotal", 165, y);
+  doc.setFont(undefined, 'normal');
+
+  y += 8;
+
+  for (let code in cart) {
+    const item = cart[code];
+    const subtotal = item.quantity * item.price;
+    total += subtotal;
+
+    // Asegura que no se salga del margen inferior (salto de página)
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
     }
+
+    doc.text(code, 10, y);
+    doc.text(item.name, 35, y);
+    doc.text(item.description, 75, y, { maxWidth: 45 }); // Opcional: corta si es muy largo
+    doc.text(String(item.quantity), 125, y);
+    doc.text(`L. ${item.price.toFixed(2)}`, 140, y);
+    doc.text(`L. ${subtotal.toFixed(2)}`, 165, y);
+
+    y += 8;
+  }
+
+  // Total general
+  y += 10;
+  doc.setFont(undefined, 'bold');
+  doc.text(`Total: L. ${total.toFixed(2)}`, 165, y);
+
+  doc.save('carrito.pdf');
+}
+
+  
   
     window.addEventListener('DOMContentLoaded', loadCartFromStorage);
   </script>
