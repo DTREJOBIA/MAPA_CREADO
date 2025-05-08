@@ -208,6 +208,94 @@
             max-height: 90%;
             object-fit: contain;
         }
+
+/* Estilos del carrito */
+/* Estilos del carrito */
+/* Estilos del carrito *//* Estilos del carrito */
+        /* Estilos del carrito */
+       
+       
+  #cart-icon {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background: #3498db;
+    color: white;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1000;
+  }
+
+  #cart-count {
+    background: red;
+    border-radius: 50%;
+    padding: 2px 6px;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+
+  #cart-panel {
+  position: fixed;
+  top: 7%; /* Empieza a media pantalla */
+  left: 0;
+  width: 500px;
+  height: 80%; /* Solo ocupa la mitad inferior */
+  background-color: #ffffff;
+  border-top-right-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+
+#cart-panel.open {
+  transform: translateX(0);
+}
+
+  #cartTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+
+  #cartTable th, #cartTable td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  #cart-panel button {
+
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  #cart-panel h2 {
+    margin-top: 0;
+  }
+
+
+
+
+
+
+
+
+
+
+
     </style>
 </head>
 
@@ -215,44 +303,55 @@
     <div class="background-image"></div>
     <h1 class="title-3d">CATÁLOGO BIA HONDURAS</h1>
 
+
     <div id="INDIO_PRODUCTOS_TORREFACTO" class="container product-list fade-in">
         <h2>Productos de Torrefacto</h2>
         <div class="product-grid">
             <div class="product">
                 <img src="../GK/Torrefacto/Café ORO 405g.jpg" alt="Café Puro Maya 340g" onclick="showFullImage(this.src)">
-                <p><strong>Café ORO 405g</strong><br> Código: 0102105<br>Precio: L. 115</p>
+                <p><strong>Café ORO 405g</strong><br> Código: 170028<br>Precio: L. 115</p>
+                <button onclick="addToCart('170028', 'Café ORO', '405g', 115)">🛒 Agregar</button>       
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Café ORO 216g.jpg" alt="Café ORO 216g" onclick="showFullImage(this.src)">
-                <p><strong>Café ORO 216g</strong><br> Código: 010211<br> Precio: L. 66 </p>
+                <p><strong>Café ORO 216g</strong><br> Código: 170024<br> Precio: L. 66 </p>
+                <button onclick="addToCart('170024', 'Café ORO', '216g', 66)">🛒 Agregar</button>
+                
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe ORO 8 oz.jpg" alt="Cafe ORO 8 oz" onclick="showFullImage(this.src)">
                 <p><strong>Cafe ORO 8 oz </strong><br>Código: 010203 <br> Precio: L. 59</p>
+                <button onclick="addToCart('010203', 'Cafe ORO', '8 oz', 59)">🛒 Agregar</button>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Café Oro 6 oz.jpg" alt="Café Maya Palo 444g" onclick="showFullImage(this.src)">
                 <p><strong>Café Oro 6 oz </strong><br> Código: 010205 <br> Precio: L. 32</p>
+                <button onclick="addToCart('010205', 'Café Oro', '6 oz', 32)">🛒 Agregar</button>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe INDIO 390g.jpg" alt="Cafe INDIO 390g" onclick="showFullImage(this.src)">
-                <p><strong>Cafe INDIO 390g</strong><br> Código: 0101105<br> Precio: L. 107</p>
+                <p><strong>Cafe INDIO 390g</strong><br> Código: 170015<br> Precio: L. 107</p>
+                <button onclick="addToCart('170015', 'Cafe INDIO', '390g', 107)">🛒 Agregar</button>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe REY 390g.jpg" alt="Cafe REY 390g" onclick="showFullImage(this.src)">
                 <p><strong>Cafe REY 390g </strong><br>Código: 0103199 <br> Precio: L. 107</p>
+                <button onclick="addToCart('0103199', 'Cafe REY', '390g', 107)">🛒 Agregar</button>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe INDIO 208g.jpg" alt="Cafe INDIO 208g" onclick="showFullImage(this.src)">
                 <p><strong>Cafe INDIO 208g </strong><br>Código: 0101106 <br> Precio: L. 58</p>
+                <button onclick="addToCart('0101106', 'GCafe INDIO', '208g', 58)">🛒 Agregar</button>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe CORONA 390g.jpg" alt="Cafe CORONA 390g" onclick="showFullImage(this.src)">
                 <p><strong>Cafe CORONA 390g </strong><br>Código: 010416<br>Precio: L. 99</p>
+                <button onclick="addToCart('010416', 'Cafe CORONA', '390g', 99)">🛒 Agregar</button>
             </div>
             <div class="product">
                 <img src="../GK/Torrefacto/Cafe MI DELICIA 375g.jpg" alt="Cafe MI DELICIA 375g" onclick="showFullImage(this.src)">
                 <p><strong>Cafe MI DELICIA 375g</strong><br>Código: 170053<br>Precio: L. 99</p>
+                <button onclick="addToCart('170053', 'Cafe MI DELICIA', '375g', 99)">🛒 Agregar</button>
             </div>
         </div>
         <a href="javascript:history.back()" class="center-button">⬅ Volver</a>
@@ -322,6 +421,149 @@
             });
         });
     </script>
+<!-- Ícono del carrito fijo -->
+<!-- Ícono del carrito fijo -->
+<!-- Ícono del carrito fijo -->
+<!-- Ícono del carrito fijo -->
+
+<!-- 🔹 ICONO FLOTANTE -->
+<div id="cart-icon" onclick="toggleCartPanel()">
+    🛒 <span id="cart-count">0</span>
+  </div>
+   <!-- 🔹 PANEL DEL CARRITO -->
+  <!-- 🔹 PANEL DEL CARRITO -->
+  <div id="cart-panel">
+    <h2>🛒 Carrito</h2>
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Cant.</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <h3>Total: <span id="totalPrice">L. 0.00</span></h3>
+    <button onclick="downloadPDF()">📥 Descargar PDF</button>
+    <button onclick="emptyCart()">🗑 Vaciar carrito</button>
+  </div>
+ <!-- 🔹 PANEL DEL CARRITO -->
+ <!-- 🔹 PANEL DEL CARRITO -->
+
+<!-- Carrito flotante mejorado -->
+<!-- Ícono flotante del carrito -->
+<!-- 🔹 BOTÓN FLOTANTE DEL CARRITO -->
+
+  
+ 
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    let cart = {};
+  
+    function toggleCartPanel() {
+      document.getElementById('cart-panel').classList.toggle('open');
+
+      
+    }
+  
+    function addToCart(code, name, description, price) {
+      if (!cart[code]) {
+        cart[code] = { name, description, quantity: 1, price };
+      } else {
+        cart[code].quantity += 1;
+      }
+      updateCartUI();
+    }
+  
+    function removeFromCart(code) {
+      delete cart[code];
+      updateCartUI();
+    }
+  
+    function emptyCart() {
+      cart = {};
+      updateCartUI();
+    }
+  
+    function updateCartUI() {
+      const tbody = document.querySelector('#cartTable tbody');
+      const totalPriceEl = document.getElementById('totalPrice');
+      const cartCountEl = document.getElementById('cart-count');
+      tbody.innerHTML = '';
+  
+      let total = 0;
+      let totalItems = 0;
+  
+      for (let code in cart) {
+        const item = cart[code];
+        const subtotal = item.quantity * item.price;
+        total += subtotal;
+        totalItems += item.quantity;
+  
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${code}</td>
+          <td>${item.name}</td>
+          <td>${item.description}</td>
+          <td>${item.quantity}</td>
+          <td>L. ${subtotal.toFixed(2)}</td>
+          <td><button onclick="removeFromCart('${code}')">❌</button></td>
+        `;
+        tbody.appendChild(tr);
+      }
+  
+      totalPriceEl.textContent = 'L. ' + total.toFixed(2);
+      cartCountEl.textContent = totalItems;
+  
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  
+    function loadCartFromStorage() {
+      const savedCart = localStorage.getItem('cart');
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCartUI();
+      }
+    }
+  
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(12);
+      doc.text('Resumen del Carrito', 10, 10);
+      let y = 20;
+      let total = 0;
+  
+      doc.text("Código | Nombre | Descripción | Cantidad | Precio | Subtotal", 10, y);
+      y += 10;
+  
+      for (let code in cart) {
+        const item = cart[code];
+        const subtotal = item.quantity * item.price;
+        total += subtotal;
+        doc.text(
+          `${code} | ${item.name} | ${item.description} | ${item.quantity} | L. ${item.price.toFixed(2)} | L. ${subtotal.toFixed(2)}`,
+          10, y
+        );
+        y += 10;
+      }
+  
+      y += 10;
+      doc.text(`Total: L. ${total.toFixed(2)}`, 10, y);
+      doc.save('carrito.pdf');
+    }
+  
+    window.addEventListener('DOMContentLoaded', loadCartFromStorage);
+  </script>
+  
+
+
+
 </body>
 
 </html>
