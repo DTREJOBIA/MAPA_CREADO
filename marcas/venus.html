@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Líneas Venus - CATÁLOGO BIA HONDURAS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -175,6 +176,317 @@
         .dark-mode .center-button {
             background-color: #0055aa;
         }
+
+  /* Estilos del carrito */
+/* Estilos del carrito */
+/* Estilos del carrito *//* Estilos del carrito */
+        /* Estilos del carrito */
+       
+       
+  #cart-icon {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background: #3498db;
+    color: white;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1000;
+  }
+
+  #cart-count {
+    background: red;
+    border-radius: 50%;
+    padding: 2px 6px;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+
+
+  #cart-panel {
+   position: fixed;
+   top: 7%;
+   left: 0;
+   /* Ancho inicial, pero permitimos que crezca */
+   width: 100%;
+   max-width: 100%; /* Evita que se haga demasiado grande en pantallas pequeñas */
+   height: 80%;
+   background-color: #ffffff;
+   border-top-right-radius: 10px;
+   border: 1px solid #ddd;
+   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+   transform: translateX(-100%);
+   transition: transform 0.3s ease;
+   z-index: 1000;
+   overflow-y: auto;
+   /* Permitimos que el panel se expanda horizontalmente */
+   overflow-x: auto;
+   white-space: nowrap;
+  }
+
+  #cartTable {
+   width: auto; /* La tabla se ajusta al contenido */
+   border-collapse: collapse;
+   margin-bottom: 10px;
+  }
+
+
+
+
+
+#cart-panel.open {
+  transform: translateX(0);
+}
+
+  #cartTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+
+  #cartTable th, #cartTable td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  #cart-panel button {
+
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  #cart-panel h2 {
+    margin-top: 0;
+  }
+
+/* Estilos del carrito */
+/* Estilos del carrito */
+/* Estilos del carrito *//* Estilos del carrito */
+        /* Estilos del carrito */
+       
+       
+        #cart-icon {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background: #3498db;
+    color: white;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1000;
+  }
+
+  #cart-count {
+    background: red;
+    border-radius: 50%;
+    padding: 2px 6px;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+
+
+  #cart-panel {
+   position: fixed;
+   top: 7%;
+   left: 0;
+   /* Ancho inicial, pero permitimos que crezca */
+   width: 100%;
+   max-width: 100%; /* Evita que se haga demasiado grande en pantallas pequeñas */
+   height: 80%;
+   background-color: #ffffff;
+   border-top-right-radius: 10px;
+   border: 1px solid #ddd;
+   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+   transform: translateX(-100%);
+   transition: transform 0.3s ease;
+   z-index: 1000;
+   overflow-y: auto;
+   /* Permitimos que el panel se expanda horizontalmente */
+   overflow-x: auto;
+   white-space: nowrap;
+  }
+
+  #cartTable {
+   width: auto; /* La tabla se ajusta al contenido */
+   border-collapse: collapse;
+   margin-bottom: 10px;
+  }
+
+
+
+
+
+#cart-panel.open {
+  transform: translateX(0);
+}
+
+  #cartTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+
+  #cartTable th, #cartTable td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  #cart-panel button {
+
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  #cart-panel h2 {
+    margin-top: 0;
+  }
+
+
+  .btn-agregar {
+        background: linear-gradient(135deg, #00c6ff, #0072ff); /* degradado azul-turquesa */
+        color: white;
+        border: none;
+        padding: 12px 26px;
+        border-radius: 999px; /* completamente ovalado */
+        font-size: 16px;
+        font-weight: 600;
+        font-family: 'Segoe UI', sans-serif;
+        cursor: pointer;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-agregar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #00bcd4, #0066cc); /* color más intenso al pasar el mouse */
+    }
+
+    .btn-agregar:active {
+        transform: scale(0.97);
+    }
+
+
+    .btn-home {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        z-index: 1000;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-home svg {
+        width: 22px;
+        height: 22px;
+        fill: #007bff; /* azul moderno */
+    }
+.dark-mode #cart-panel {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+    border-color: #444;
+}
+
+.dark-mode #cartTable th,
+.dark-mode #cartTable td {
+    border-color: #555;
+    color: #f5f5f5;
+    background-color: #2a2a2a;
+}
+
+.dark-mode #cart-panel h2,
+.dark-mode #cart-panel h3 {
+    color: #f5f5f5;
+}
+
+.dark-mode #cart-panel button {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode #cart-panel button:hover {
+    background-color: #666;
+}
+
+  /* Estilos para el anuncio */
+  #announcement-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Oscurece el fondo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1002; /* Asegura que esté encima del carrito y otros elementos */
+        }
+/* ANUNCIO */
+/* ANUNCIO */
+/* ANUNCIO */
+        #announcement-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #announcement-image {
+            max-width: 30%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        #accept-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+
+
+
+        
     </style>
 </head>
 
@@ -234,8 +546,46 @@
         <p><a href="#" style="color: inherit;">Política de Privacidad</a> | <a href="#" style="color: inherit;">Términos y Condiciones</a></p>
     </footer>
 
+    <!-- 🔹 ICONO FLOTANTE -->
+<div id="cart-icon" onclick="toggleCartPanel()">
+    🛒 <span id="cart-count">0</span>
+  </div>
+   <!-- 🔹 PANEL DEL CARRITO -->
+  <!-- 🔹 PANEL DEL CARRITO -->
+  <div id="cart-panel">
+    <h2>🛒 Carrito</h2>
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Cant.</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <h3>Total: <span id="totalPrice">L. 0.00</span></h3>
+    <button onclick="downloadPDF()">📥 Descargar PDF</button>
+    <button onclick="emptyCart()">🗑 Vaciar carrito</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- 🔹 Promocion -->
+  <div id="announcement-overlay">
+    <div id="announcement-box">
+        <h2>¡PROMOCIONES!</h2>
+        <img id="announcement-image" src="C:\Users\dtrejo\Downloads\ANUNCIO1.png" alt="Anuncio">
+        <p>aprovecha nuestras promocíon, solo por este mes.</p>
+        <button id="accept-button">Aceptar</button>
+    </div>
+</div>
+
+    
+
     <script>
-        function scrollToTop() {
+               function scrollToTop() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -247,7 +597,22 @@
             localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        function showFullImage(imgSrc) {
+            const overlay = document.getElementById('imageOverlay');
+            const overlayImg = overlay.querySelector('img');
+            overlayImg.src = imgSrc;
+            overlay.style.display = 'flex';
+            overlay.addEventListener('click', closeFullImage);
+        }
+
+        function closeFullImage() {
+            const overlay = document.getElementById('imageOverlay');
+            overlay.style.display = 'none';
+            overlay.removeEventListener('click', closeFullImage);
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
@@ -256,7 +621,7 @@
             const themeToggle = document.createElement('div');
             themeToggle.className = 'theme-toggle';
             themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
-            themeToggle.addEventListener('click', function () {
+            themeToggle.addEventListener('click', function() {
                 toggleDarkMode();
                 this.innerHTML = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
             });
@@ -268,14 +633,225 @@
             backToTopBtn.addEventListener('click', scrollToTop);
             document.body.appendChild(backToTopBtn);
 
-            window.addEventListener('scroll', function () {
+            window.addEventListener('scroll', function() {
                 backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
             });
+            loadCartFromStorage(); // Asegúrate de que esta línea esté aquí para cargar el carrito al inicio
+        });
+        let cart = {};
+
+function toggleCartPanel() {
+    document.getElementById('cart-panel').classList.toggle('open');
+}
+
+function addToCart(code, name, description, price) {
+    cart[code] = cart[code] || { name, description, quantity: 0, price };
+    cart[code].quantity += 1;
+    updateCartUI();
+}
+
+function removeFromCart(code) {
+    delete cart[code];
+    updateCartUI();
+}
+
+function changeQuantity(code, change) {
+    cart[code].quantity += change;
+    if (cart[code].quantity <= 0) {
+        delete cart[code];
+    }
+    updateCartUI();
+}
+
+function emptyCart() {
+    cart = {};
+    updateCartUI();
+}
+
+function updateCartUI() {
+    const tbody = document.querySelector('#cartTable tbody');
+    const totalPriceEl = document.getElementById('totalPrice');
+    const cartCountEl = document.getElementById('cart-count');
+    tbody.innerHTML = '';
+
+    let total = 0;
+    let totalItems = 0;
+
+    for (const code in cart) {
+        const item = cart[code];
+        const subtotal = item.quantity * item.price;
+        total += subtotal;
+        totalItems += item.quantity;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${code}</td>
+            <td>${item.name}</td>
+            <td>${item.description}</td>
+            <td>${item.quantity}</td>
+            <td>L. ${subtotal.toFixed(2)}</td>
+            <td>
+                <div style="display: flex; gap: 5px;">
+                    <button onclick="changeQuantity('${code}', -1)">-</button>
+                    <button onclick="changeQuantity('${code}', 1)">+</button>
+                    <button onclick="removeFromCart('${code}')">❌</button>
+                </div>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    }
+
+    totalPriceEl.textContent = 'L. ' + total.toFixed(2);
+    cartCountEl.textContent = totalItems;
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function loadCartFromStorage() {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCartUI();
+    }
+}
+
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Define margins (in points)
+    const margin = 10;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+
+    const title = 'Carrito de Compra';
+    let subtitle = 'BIA HONDURAS - Café & Representadas';
+
+    // Función para mostrar un prompt estilizado (simulado)
+    function fancyPrompt(message, defaultValue) {
+        // En un entorno real, podrías usar un modal personalizado en lugar de `prompt()`
+        const userInput = prompt(message, defaultValue);
+        return userInput;
+    }
+
+    // Solicitar al usuario el nombre para la factura
+    const clientName = fancyPrompt(
+        "Ingrese el nombre del cliente y Codigo:",
+        "" // Valor por defecto vacío
+    );
+
+    // Actualizar el subtítulo si el usuario ingresa un nombre
+    if (clientName && clientName.trim() !== "") {
+        subtitle = `Nombre de cliente: ${clientName}`;
+    }
+
+    // Añadir título
+    doc.setFontSize(14); // Smaller title font
+    doc.text(title, pageWidth / 2, margin + 5, null, null, 'center'); // Adjust y position
+
+    // Añadir subtítulo
+    doc.setFontSize(10); // Smaller subtitle font
+    doc.text(subtitle, pageWidth / 2, margin + 15, null, null, 'center'); // Adjust y position
+
+    doc.setFontSize(8); // Smaller general font
+    let y = margin + 25; // Adjust y position
+    let total = 0;
+    let rowNumber = 1;
+
+    // Encabezados
+    doc.setFont(undefined, 'bold');
+    doc.text("No.", margin, y);
+    doc.text("Código", margin + 10, y);
+    doc.text("Nombre", margin + 30, y);
+    doc.text("Descripción", margin + 70, y); // Increased space
+    doc.text("Cant.", margin + 130, y); // Increased space
+    doc.text("Precio", margin + 140, y);
+    doc.text("Subtotal", margin + 155, y);
+    doc.setFont(undefined, 'normal');
+
+    y += 5; // Reduced spacing
+
+    for (let code in cart) {
+        const item = cart[code];
+        const subtotal = item.quantity * item.price;
+        total += subtotal;
+
+        if (y > pageHeight - margin - 20) { // Check for page break
+            doc.addPage();
+            y = margin + 5; // Reset y position
+
+            // Volver a añadir encabezados
+            doc.setFont(undefined, 'bold');
+            doc.text("No.", margin, y);
+            doc.text("Código", margin + 10, y);
+            doc.text("Nombre", margin + 30, y);
+            doc.text("Descripción", margin + 70, y); // Increased space
+            doc.text("Cant.", margin + 130, y); // Increased space
+            doc.text("Precio", margin + 140, y);
+            doc.text("Subtotal", margin + 155, y);
+            doc.setFont(undefined, 'normal');
+
+            y += 5; // Reduced spacing
+        }
+
+        doc.text(String(rowNumber), margin, y);
+        doc.text(code, margin + 10, y);
+        doc.text(item.name, margin + 30, y);
+        doc.text(doc.splitTextToSize(item.description, 60), margin + 70, y); // Wrapped text, more width
+        doc.text(String(item.quantity), margin + 130, y);
+        doc.text(`L. ${item.price.toFixed(2)}`, margin + 140, y);
+        doc.text(`L. ${subtotal.toFixed(2)}`, margin + 155, y);
+
+        y += 5; // Reduced spacing
+        rowNumber++;
+    }
+
+    // Total
+    y += 8; // Reduced spacing
+    doc.setFont(undefined, 'bold');
+    doc.text(`Total: L. ${total.toFixed(2)}`, margin + 155, y);
+
+    // Fecha y hora al pie de página
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString();
+    const formattedTime = currentDate.toLocaleTimeString(); // Obtener la hora
+    const footerText = `Fecha de emisión: ${formattedDate}  Hora: ${formattedTime}`; // Combinar fecha y hora
+    doc.setFontSize(8);
+    doc.setFont(undefined, 'normal');
+    doc.text(footerText, pageWidth / 2, pageHeight - margin - 2, null, null, 'center'); // Adjust y position
+
+    doc.save('factura_compra.pdf');
+}
+
+    // ANUNCIO
+        // ANUNCIO
+
+          // Obtener elementos del anuncio
+          const announcementOverlay = document.getElementById('announcement-overlay');
+        const acceptButton = document.getElementById('accept-button');
+
+        // Función para cerrar el anuncio
+        function closeAnnouncement() {
+            announcementOverlay.style.display = 'none';
+        }
+
+        // Asignar la función al botón
+        acceptButton.addEventListener('click', closeAnnouncement);
+
+        // Opcional: Cerrar al hacer clic fuera del anuncio
+        window.addEventListener('click', function(event) {
+            if (event.target == announcementOverlay) {
+                closeAnnouncement();
+            }
         });
 
-        function showPage(url) {
-            window.location.href = url; // abre en la misma pestaña
-        }
+        // Opcional: Cerrar después de un tiempo
+        // setTimeout(closeAnnouncement, 5000); // Cierra después de 5 segundos
+
+
+
+
+
+        
     </script>
 </body>
 
