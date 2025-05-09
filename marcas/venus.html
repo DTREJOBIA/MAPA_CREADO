@@ -180,7 +180,8 @@
     /* ANUNCIO */
 
      /* Estilos para el anuncio */
-     #announcement-overlay {
+          /* Estilos para el anuncio */
+          #announcement-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -220,7 +221,6 @@
             cursor: pointer;
             border-radius: 5px;
         }
-
 
 
 
@@ -284,11 +284,11 @@
         <p><a href="#" style="color: inherit;">Política de Privacidad</a> | <a href="#" style="color: inherit;">Términos y Condiciones</a></p>
     </footer>
 
-    <div id="announcement-overlay">
+    <div id="announcement-overlay" style="display: none;">
         <div id="announcement-box">
-            <h2>¡PROMOCIÓNES!</h2>
-            <img id="announcement-image" src="ANUNCIO1.png" alt="Anuncio">
-            <p>Aprovecha nuestras promociones. hasta final de mes de abril</p>
+            <h2>¡PROMOCIONES!</h2>
+            <img id="announcement-image" src="../ANUNCIO1.png" alt="Anuncio">
+            <p>Aprovecha las promociones hasta final de mes</p>
             <button id="accept-button">Aceptar</button>
         </div>
     </div>
@@ -341,13 +341,21 @@
 // MENSAJE
 // MENSAJE
 // MENSAJE
-        // Obtener elementos del anuncio
-        const announcementOverlay = document.getElementById('announcement-overlay');
+          // Obtener elementos del anuncio
+          const announcementOverlay = document.getElementById('announcement-overlay');
         const acceptButton = document.getElementById('accept-button');
+        let announcementVisible = false; // Variable para controlar si el anuncio está visible
+
+        // Función para mostrar el anuncio
+        function showAnnouncement() {
+            announcementOverlay.style.display = 'flex';
+            announcementVisible = true;
+        }
 
         // Función para cerrar el anuncio
         function closeAnnouncement() {
             announcementOverlay.style.display = 'none';
+            announcementVisible = false;
         }
 
         // Asignar la función al botón
@@ -355,18 +363,23 @@
 
         // Opcional: Cerrar al hacer clic fuera del anuncio
         window.addEventListener('click', function(event) {
-            if (event.target == announcementOverlay) {
+            if (event.target == announcementOverlay && announcementVisible) {
                 closeAnnouncement();
             }
         });
 
-        // Opcional: Cerrar después de un tiempo
-        // setTimeout(closeAnnouncement, 5000); // Cierra después de 5 segundos
+        // Mostrar el anuncio cada 5 minutos (5 * 60 * 1000 milisegundos)
+        setInterval(showAnnouncement, 300000);
 
+        // Mostrar el anuncio inicialmente después de un breve retraso (opcional)
+        setTimeout(showAnnouncement, 1000);
 
 
         
     </script>
+</body>
+
+</html>
 </body>
 
 </html>
