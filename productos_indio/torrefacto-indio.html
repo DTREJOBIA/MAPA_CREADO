@@ -722,57 +722,113 @@
       }
   }
 
-  function downloadPDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-      doc.setFontSize(16);
-      doc.text('Resumen del Carrito', 105, 15, null, null, 'center');
-      doc.setFontSize(10);
+    // Define margins (in points)
+    const margin = 10;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
 
-      let y = 30;
-      let total = 0;
+    const title = 'Carrito de Compra';
+    let subtitle = 'BIA HONDURAS - Café & Representadas';
 
-      // Encabezados con posiciones fijas
-      doc.setFont(undefined, 'bold');
-      doc.text("Código", 10, y);
-      doc.text("Nombre", 35, y);
-      doc.text("Descripción", 75, y);
-      doc.text("Cant.", 125, y);
-      doc.text("Precio", 140, y);
-      doc.text("Subtotal", 165, y);
-      doc.setFont(undefined, 'normal');
+    // Función para mostrar un prompt estilizado (simulado)
+    function fancyPrompt(message, defaultValue) {
+        // En un entorno real, podrías usar un modal personalizado en lugar de `prompt()`
+        const userInput = prompt(message, defaultValue);
+        return userInput;
+    }
 
-      y += 8;
+    // Solicitar al usuario el nombre para la factura
+    const clientName = fancyPrompt(
+        "Ingrese el nombre del cliente y Codigo:",
+        "" // Valor por defecto vacío
+    );
 
-      for (const code in cart) {
-          const item = cart[code];
-          const subtotal = item.quantity * item.price;
-          total += subtotal;
+    // Actualizar el subtítulo si el usuario ingresa un nombre
+    if (clientName && clientName.trim() !== "") {
+        subtitle = `Nombre de cliente: ${clientName}`;
+    }
 
-          // Asegura que no se salga del margen inferior (salto de página)
-          if (y > 270) {
-              doc.addPage();
-              y = 20;
-          }
+    // Añadir título
+    doc.setFontSize(14); // Smaller title font
+    doc.text(title, pageWidth / 2, margin + 5, null, null, 'center'); // Adjust y position
 
-          doc.text(code, 10, y);
-          doc.text(item.name, 35, y);
-          doc.text(item.description, 75, y, { maxWidth: 45 }); // Opcional: corta si es muy largo
-          doc.text(String(item.quantity), 125, y);
-          doc.text(`L. ${item.price.toFixed(2)}`, 140, y);
-          doc.text(`L. ${subtotal.toFixed(2)}`, 165, y);
+    // Añadir subtítulo
+    doc.setFontSize(10); // Smaller subtitle font
+    doc.text(subtitle, pageWidth / 2, margin + 15, null, null, 'center'); // Adjust y position
 
-          y += 8;
-      }
+    doc.setFontSize(8); // Smaller general font
+    let y = margin + 25; // Adjust y position
+    let total = 0;
+    let rowNumber = 1;
 
-      // Total general
-      y += 10;
-      doc.setFont(undefined, 'bold');
-      doc.text(`Total: L. ${total.toFixed(2)}`, 165, y);
+    // Encabezados
+    doc.setFont(undefined, 'bold');
+    doc.text("No.", margin, y);
+    doc.text("Código", margin + 10, y);
+    doc.text("Nombre", margin + 30, y);
+    doc.text("Descripción", margin + 70, y); // Increased space
+    doc.text("Cant.", margin + 130, y); // Increased space
+    doc.text("Precio", margin + 140, y);
+    doc.text("Subtotal", margin + 155, y);
+    doc.setFont(undefined, 'normal');
 
-      doc.save('carrito.pdf');
-  }
+    y += 5; // Reduced spacing
+
+    for (let code in cart) {
+        const item = cart[code];
+        const subtotal = item.quantity * item.price;
+        total += subtotal;
+
+        if (y > pageHeight - margin - 20) { // Check for page break
+            doc.addPage();
+            y = margin + 5; // Reset y position
+
+            // Volver a añadir encabezados
+            doc.setFont(undefined, 'bold');
+            doc.text("No.", margin, y);
+            doc.text("Código", margin + 10, y);
+            doc.text("Nombre", margin + 30, y);
+            doc.text("Descripción", margin + 70, y); // Increased space
+            doc.text("Cant.", margin + 130, y); // Increased space
+            doc.text("Precio", margin + 140, y);
+            doc.text("Subtotal", margin + 155, y);
+            doc.setFont(undefined, 'normal');
+
+            y += 5; // Reduced spacing
+        }
+
+        doc.text(String(rowNumber), margin, y);
+        doc.text(code, margin + 10, y);
+        doc.text(item.name, margin + 30, y);
+        doc.text(doc.splitTextToSize(item.description, 60), margin + 70, y); // Wrapped text, more width
+        doc.text(String(item.quantity), margin + 130, y);
+        doc.text(`L. ${item.price.toFixed(2)}`, margin + 140, y);
+        doc.text(`L. ${subtotal.toFixed(2)}`, margin + 155, y);
+
+        y += 5; // Reduced spacing
+        rowNumber++;
+    }
+
+    // Total
+    y += 8; // Reduced spacing
+    doc.setFont(undefined, 'bold');
+    doc.text(`Total: L. ${total.toFixed(2)}`, margin + 155, y);
+
+    // Fecha y hora al pie de página
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString();
+    const formattedTime = currentDate.toLocaleTimeString(); // Obtener la hora
+    const footerText = `Fecha de emisión: ${formattedDate}  Hora: ${formattedTime}`; // Combinar fecha y hora
+    doc.setFontSize(8);
+    doc.setFont(undefined, 'normal');
+    doc.text(footerText, pageWidth / 2, pageHeight - margin - 2, null, null, 'center'); // Adjust y position
+
+    doc.save('factura_compra.pdf');
+}
 </script>
   
 
