@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos Café Molido Tostado</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <a href="index.html" class="btn-home" title="Inicio">
+        <svg viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+
+    
     <style>
         /* Reset y estilos generales */
         * {
@@ -304,6 +310,63 @@
     margin-top: 0;
   }
 
+.btn-agregar {
+        background: linear-gradient(135deg, #00c6ff, #0072ff); /* degradado azul-turquesa */
+        color: white;
+        border: none;
+        padding: 12px 26px;
+        border-radius: 999px; /* completamente ovalado */
+        font-size: 16px;
+        font-weight: 600;
+        font-family: 'Segoe UI', sans-serif;
+        cursor: pointer;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-agregar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #00bcd4, #0066cc); /* color más intenso al pasar el mouse */
+    }
+
+    .btn-agregar:active {
+        transform: scale(0.97);
+    }
+        
+ .btn-home {
+        position: fixed;
+        top: 95%;
+        right: 20px;
+        transform: translateY(-50%);
+        background-color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 14px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 1000;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-home:hover {
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-home svg {
+        width: 28px;
+        height: 28px;
+        fill: #007bff; /* azul moderno */
+    }
 
 
 
@@ -323,25 +386,25 @@
                 <img src="../GK/Café Molido Tostado/Cafe Molido Tostado Tipo Espreso.jpg"
                     alt="Café Molido Tostado Tipo Espreso" onclick="showFullImage(this.src)">
                 <p><strong>Café Molido Tostado Tipo Espresso</strong> <br> Código: 010160<br> Precio: L. 116</p>
-                <button onclick="addToCart('010160', 'Café Molido', 'Tostado Tipo Espresso', 116)">🛒 Agregar</button>   
+                <button class="btn-agregar" onclick="addToCart('010160', 'Café Molido', 'Tostado Tipo Espresso', 116)">🛒 Agregar</button>   
             </div>
             <div class="product">
                 <img src="../GK/Café Molido Tostado/Cafe Molido Tostado Tipo Percolador.jpg"
                     alt="Café Molido Tostado Tipo Percolador" onclick="showFullImage(this.src)">
                 <p><strong>Café Molido Tostado Tipo Percolador </strong><br>Código: 010163<br> Precio: L. 116</p>
-                <button onclick="addToCart('010163', 'Café Molido', 'Tostado Tipo Percolador', 116)">🛒 Agregar</button>   
+                <button class="btn-agregar" onclick="addToCart('010163', 'Café Molido', 'Tostado Tipo Percolador', 116)">🛒 Agregar</button>   
             </div>
             <div class="product">
                 <img src="../GK/Café Molido Tostado/Cafe Molido Tostado Medio 12 oz.jpg"
                     alt="Café Molido Tostado Medio 12 oz" onclick="showFullImage(this.src)">
                 <p><strong>Café Molido Tostado Medio 12 oz</strong><br> Código: 010164<br> Precio: L. 116</p>
-                <button onclick="addToCart('010164', 'Café Molido', 'Tostado Medio 12 oz', 116)">🛒 Agregar</button>   
+                <button class="btn-agregar" onclick="addToCart('010164', 'Café Molido', 'Tostado Medio 12 oz', 116)">🛒 Agregar</button>   
             </div>
             <div class="product">
                 <img src="../GK/Café Molido Tostado/Cafe Tostado Tipo Arabe.jpg" alt="Café Tostado Tipo Arabe 12 oz"
                     onclick="showFullImage(this.src)">
                 <p><strong>Café Tostado Tipo Arabe 12 oz</strong><br>Código: 010162<br> Precio: L. 116</p>
-                <button onclick="addToCart('010162', 'Café Tostado', 'Tipo Arabe 12 oz', 116)">🛒 Agregar</button>   
+                <button class="btn-agregar" onclick="addToCart('010162', 'Café Tostado', 'Tipo Arabe 12 oz', 116)">🛒 Agregar</button>   
             </div>
         </div>
         <a href="javascript:history.back()" class="center-button">⬅ Volver</a>
