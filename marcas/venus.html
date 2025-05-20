@@ -74,44 +74,20 @@
             margin-top: 20px;
         }
 .line {
-    width: 240px;
-    background: linear-gradient(145deg, #d0eaff, #f0faff);
-    border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0, 80, 150, 0.2);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    position: relative;
-    backdrop-filter: blur(6px);
-}
+      width: 200px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
 
-.line:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 12px 24px rgba(0, 80, 150, 0.3);
-}
+    .line img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
 
-.line img {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    margin-bottom: 12px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.line:hover img {
-    transform: scale(1.05);
-}
-
-.line p {
-    margin: 0;
-    font-size: 1.1em;
-    font-weight: 600;
-    color: #004080;
-}
+    .line:hover {
+      transform: scale(1.05);
+    }
 
 
         .center-button {
@@ -281,7 +257,7 @@
             </div>
             <div class="line">
                 <a href="javascript:void(0)" onclick="showPage('../productos_venus/Bombones_venus')">
-                    <img src="../VENUS_/1.jpg" alt="Puro">
+                    <img src="../VENUS_/1.png" alt="Puro">
                     <p><strong>Bombones</strong></p>
                 </a>
             </div>
@@ -294,7 +270,7 @@
             </div>
             <div class="line">
                 <a href="javascript:void(0)" onclick="showPage('../productos_venus/Libras_venus')">
-                    <img src="../VENUS_/CANDY3LBS.jpg" alt="Puro">
+                    <img src="../VENUS_/CANDY3LBS.png" alt="Puro">
                     <p><strong>Piñateros</strong></p>
                 </a>
             </div>
