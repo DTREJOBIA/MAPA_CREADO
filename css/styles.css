@@ -570,7 +570,7 @@ footer a:hover {
 
 .theme-toggle {
     position: fixed;
-    top: 40px;
+    top: 80px;
     right: 20px;
     z-index: 1001;
     width: 40px;
