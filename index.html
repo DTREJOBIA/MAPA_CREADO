@@ -19,11 +19,33 @@ body.dark-mode {
 
 
     
-    .promo-container {
+  .promo-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 40px auto;
+  height: auto;
+}
+
+.promo-image {
+  max-width: 95%;
+  height: auto;
+  width: 100%;
+  border: 5px solid #0dcaf0;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(13, 202, 240, 0.3);
+  padding: 10px;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  margin: 0 auto; /* opcional: centra la imagen */
+}
+
+.promo-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(13, 202, 240, 0.5);
+  height: auto;
+}
 
 
         @media (max-width: 768px) {
@@ -46,23 +68,11 @@ body.dark-mode {
   }
 }
 
-}
 
-.promo-image {
-  max-width: 95%;
-  width: 100%;
-  border: 5px solid #0dcaf0;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(13, 202, 240, 0.3);
-  padding: 10px;
-  background-color: #ffffff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.promo-image:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 30px rgba(13, 202, 240, 0.5);
-}
+
+
+
 
     @media (max-width: 600px) {
     #nosotros h2, #contacto h2 {
@@ -168,6 +178,7 @@ body.dark-mode {
         </section>
 
          <section class="promo-container">
+            <div class="promo-wrapper">
             <img src="IMA_1.png" alt="Promoción destacada" class="promo-image">
           </section>
         
