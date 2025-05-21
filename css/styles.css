@@ -35,7 +35,7 @@ h1, h2 {
 
 .container {
     width: 90%;
-    max-width: 1300px;
+    max-width: 98;
     margin: 0 auto;
     padding: 20px;
     flex: 1;
